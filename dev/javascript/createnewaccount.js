@@ -111,28 +111,34 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
             {
                 $(industryField).addClass("required");
                 $(industryField).removeAttr("disabled");
-                $("label[for='industry']").css("color","#666");
+                $(industryField).show();
+                $("label[for='industry']").show();
                 $(decisionRoleField).addClass("required");
                 $(decisionRoleField).removeAttr("disabled");
-                $("label[for='decisionrole']").css("color","#666");
+                $(decisionRoleField).show();
+                $("label[for='decisionrole']").show();
                 $(officePhoneField).addClass("required");
                 $(officePhoneField).removeAttr("disabled");
-                $("label[for='officephone']").css("color","#666");
+                $(officePhoneField).show();
+                $("label[for='officephone']").show();
             }
             else
             {
                 $(industryField).removeClass("required");
-                $(industryField).attr("disabled", true);
+//                $(industryField).("disabled", true);
                 $(industryField).val("industry-notset");
-                $("label[for='industry']").css("color","#999");
+                $(industryField).hide();
+                $("label[for='industry']").hide();
                 $(decisionRoleField).removeClass("required");
-                $(decisionRoleField).attr("disabled", true);
+//                $(decisionRoleField).attr("disabled", true);
                 $(decisionRoleField).val("decisionrole-notset");
-                $("label[for='decisionrole']").css("color","#999");
+                $(decisionRoleField).hide();
+                $("label[for='decisionrole']").hide();
                 $(officePhoneField).removeClass("required");
-                $(officePhoneField).attr("disabled", true);
+//                $(officePhoneField).attr("disabled", true);
                 $(officePhoneField).val("");
-                $("label[for='officephone']").css("color","#999");
+                $(officePhoneField).hide();
+                $("label[for='officephone']").hide();
             }
         }
 
