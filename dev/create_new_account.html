@@ -47,6 +47,10 @@
                                         <label for="firstName" class="firstName">__MSG__FIRSTNAME__:</label>
                                         <label for="lastName" class="lastName">__MSG__LASTNAME__:</label>
                                         <label for="email" class="email">__MSG__EMAIL__:</label>
+                                <!-- rSmart: moved to first column to accommodate marketing fields -->
+                                        <label id="username_label" class="username" for="username">__MSG__USERNAME__:</label>
+                                        <label for="password" class="password">__MSG__PASSWORD__:</label>
+                                        <label for="password_repeat" class="password_repeat">__MSG__RE_TYPE_PASSWORD__:</label>
                                     </div>
                                     <div class="signup_form_column_fields">
                                         <div class="create_account_input_error" style="display:none;"><!----></div>
@@ -55,16 +59,7 @@
                                         <input type="text" maxlength="255" id="lastName" name="lastName" class="create_account_input required" placeholder="Sakai"/>
                                         <div class="create_account_input_error" style="display:none;"><!----></div>
                                         <input type="text" maxlength="255" id="email" name="email" class="create_account_input required email" placeholder="hiroyuki.sakai@example.com"/>
-                                    </div>
-                                </div>
-
-                                <div class="signup_form_column">
-                                    <div class="signup_form_column_labels">
-                                        <label id="username_label" class="username" for="username">__MSG__USERNAME__:</label>
-                                        <label for="password" class="password">__MSG__PASSWORD__:</label>
-                                        <label for="password_repeat" class="password_repeat">__MSG__RE_TYPE_PASSWORD__:</label>
-                                    </div>
-                                    <div class="signup_form_column_fields">
+                                <!-- rSmart: moved to first column to accommodate marketing fields -->
                                         <div class="create_account_input_error" id="create_account_username_error" style="display:none;"><!----></div>
                                         <input type="text" maxlength="255" id="username" name="username" class="username_unavailable_icon create_account_input required" placeholder="Hiroyuki"/>
                                         <div class="create_account_input_error" style="display:none;"><!----></div>
@@ -73,6 +68,73 @@
                                         <input type="password" maxlength="255" id="password_repeat" name="password_repeat" class="create_account_input required" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;"/>
                                     </div>
                                 </div>
+                                <div class="signup_form_column">
+                                <!-- rSmart: begin new fields to gather marketing data -->
+                                    <div class="signup_form_column_labels">
+                                        <label for="institution" class="institution">__MSG__INSTITUTION__:</label>
+                                        <label for="role" class="role">__MSG__ROLE__:</label>
+                                        <label for="industry" class="industry">__MSG__INDUSTRY__:</label>
+                                        <label for="decisionrole" class="decisionrole">__MSG__DECISIONROLE__:</label>
+                                        <label for="officephone" class="officephone">__MSG__OFFICEPHONE__:</label>
+                                    </div>
+                                    <div class="signup_form_column_fields">
+                                        <div class="create_account_input_error" id="create_account_institution_error" style="display:none;"><!----></div>
+                                        <input type="text" maxlength="255" id="institution" name="institution" class="create_account_input required" placeholder="My University/College"/>
+                                        <div id="create_account_role_error" class="create_account_role_error" style="display:none;"><!----></div>
+                                        <select id="role" name="role" >
+                                            <option id="role-notset" value="">__MSG__ROLE_SELECT__</option>
+                                            <option id="role-student" value="Student">__MSG__ROLE_STUDENT__</option>
+                                            <option id="role-instructor" value="Instructor">__MSG__ROLE_INSTRUCTOR__</option>
+                                            <option id="role-administrator" value="Administrator">__MSG__ROLE_ADMINISTRATOR__</option>
+                                            <option id="role-staff" value="Staff">__MSG__ROLE_STAFF__</option>
+                                            <option id="role-other" value="other">__MSG__ROLE_OTHER__</option>                                            
+                                        </select>
+                                        <div id="create_account_industry_error" class="create_account_industry_error" style="display:none;"><!----></div>
+                                        <select id="industry" name="industry" class="create_account_input required">
+                                            <option id="industry-notset" value="">__MSG__INDUSTRY_SELECT__</option>
+                                            <option id="industry-college" value="College/University">__MSG__INDUSTRY_COLLEGE__</option>
+                                            <option id="industry-comm-college" value="Community College">__MSG__INDUSTRY_COMMUNITY_COLLEGE__</option>
+                                            <option id="industry-consulting" value="Consulting">__MSG__INDUSTRY_CONSULTING__</option>
+                                            <option id="industry-government" value="Government">__MSG__INDUSTRY_GOVERNMENT__</option>
+                                            <option id="industry-corporate" value="Corporate">__MSG__INDUSTRY_CORPORATE__</option>
+                                            <option id="industry-k12" value="K-12">__MSG__INDUSTRY_K12__</option>
+                                            <option id="industry-nonprofit" value="Non Profit">__MSG__INDUSTRY_NONPROFIT__</option>
+                                            <option id="industry-other" value="Other">__MSG__INDUSTRY_OTHER__</option>
+                                        </select>
+                                        <div id="create_account_decisionrole_error" class="create_account_decisionrole_error" style="display:none;"><!----></div>
+                                        <select id="decisionrole" name="decisionrole" class="create_account_input required">
+                                            <option id="decisionrole-notset" value="">__MSG__DECISIONROLE_SELECT__</option>                                            
+                                            <option id="decisionrole-primary" value="Primary Decision Maker">__MSG__DECISIONROLE_PRIMARY__</option>
+                                            <option id="decisionrole-business" value="Businesss Decision Maker">__MSG__DECISIONROLE_BUSINESS__</option>
+                                            <option id="decisionrole-businesseval" value="Businesss Evaluator">__MSG__DECISIONROLE_BUSINESSEVAL__</option>
+                                            <option id="decisionrole-technical" value="Technical Decision Maker">__MSG__DECISIONROLE_TECHNICAL__</option>
+                                            <option id="decisionrole-technicaleval" value="Technical Evaluator">__MSG__DECISIONROLE_TECHNICALEVAL__</option>
+                                            <option id="decisionrole-exec" value="Executive Sponsor">__MSG__DECISIONROLE_EXEC__</option>
+                                            <option id="decisionrole-influencer" value="Influencer">__MSG__DECISIONROLE_INFLUENCER__</option>
+                                            <option id="decisionrole-other" value="Other">__MSG__DECISIONROLE_OTHER__</option>
+                                        </select>
+                                        <div class="create_account_officephone_error" id="create_account_officephone_error" style="display:none;"><!----></div>
+                                        <input type="text" maxlength="255" id="officephone" name="officephone" class="create_account_input required" placeholder="(201)555-1212"/>
+                                    </div>
+                                <!-- rSmart: end new fields to gather marketing data -->
+                                </div>
+<!--
+                                <div class="signup_form_column">
+                                    <div class="signup_form_column_labels">
+                                        <label id="username_label" class="username" for="username">__MSG__USERNAME__:</label>
+                                        <label for="password" class="password">__MSG__PASSWORD__:</label>
+                                        <label for="password_repeat" class="password_repeat">__MSG__RE_TYPE_PASSWORD__:</label>
+                                    </div>
+                                    <div class="signup_form_column_fields">
+                                        <div class="create_account_input_error" id="create_account_username_error" style="display:none;">--><!----><!--</div>
+                                        <input type="text" maxlength="255" id="username" name="username" class="username_unavailable_icon create_account_input required" placeholder="Hiroyuki"/>
+                                        <div class="create_account_input_error" style="display:none;">--><!----><!--</div>
+                                        <input type="password" maxlength="255" id="password" name="password" class="create_account_input required" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;"/>
+                                        <div class="create_account_input_error" style="display:none;">--><!----><!--</div>
+                                        <input type="password" maxlength="255" id="password_repeat" name="password_repeat" class="create_account_input required" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;"/>
+                                    </div>
+                                </div>
+-->
                                 <div class="captcha_container" id="captcha_box">
                                     <button id="save_account" class="s3d-button s3d-large-button" type="submit" tabindex="8">__MSG__CREATE_ACCOUNT__</button>
                                     <div id="widget_captcha" class="widget_inline"></div>
@@ -125,6 +187,15 @@
         <!-- Dependency JS -->
         <script data-main="/dev/lib/sakai/sakai.dependencies.js" src="/dev/lib/jquery/require.js"></script>
         <script>require(["/dev/javascript/createnewaccount.js", "http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"]);</script>
+
+        <!-- Start of HubSpot Logging Code  -->
+        <script type="text/javascript" language="javascript">
+            var hs_portalid=123953;
+            var hs_salog_version = "2.00";
+            var hs_ppa = "rsmart.app11.hubspot.com";
+            document.write(unescape("%3Cscript src='" + document.location.protocol + "//" + hs_ppa + "/salog.js.aspx' type='text/javascript'%3E%3C/script%3E"));
+        </script>
+        <!-- End of HubSpot Logging Code -->
 
     </body>
 </html>

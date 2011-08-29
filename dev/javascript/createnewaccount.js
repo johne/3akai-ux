@@ -42,6 +42,11 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
         var passwordField = "#password";
         var passwordRepeatField = "#passwordRepeat";
         var captchaField = "#uword";
+        var institutionField = "#institution";
+        var roleField = "#role";
+        var industryField = "#industry";
+        var decisionRoleField = "#decisionrole";
+        var officePhoneField = "#officephone";
 
         // Error fields
         var usernameTaken = "#username_taken";
@@ -84,7 +89,7 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
             // Get the values from the form.
             var values = $(formContainer).serializeObject();
 
-            var nonEscaped = ["password", "username", "password_repeat", "recaptcha_response_field"];
+            var nonEscaped = ["password", "username", "password_repeat", "recaptcha_response_field" ];
             for (var i in values) {
                 if (values.hasOwnProperty(i) && $.inArray(i, nonEscaped) === -1) {
                     values[i] = escape(values[i]);
@@ -100,6 +105,37 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
             return values;
         };
 
+        var enableMarketingFields = function (enabled)
+        {
+            if (enabled)
+            {
+                $(industryField).addClass("required");
+                $(industryField).removeAttr("disabled");
+                $("label[for='industry']").css("color","#666");
+                $(decisionRoleField).addClass("required");
+                $(decisionRoleField).removeAttr("disabled");
+                $("label[for='decisionrole']").css("color","#666");
+                $(officePhoneField).addClass("required");
+                $(officePhoneField).removeAttr("disabled");
+                $("label[for='officephone']").css("color","#666");
+            }
+            else
+            {
+                $(industryField).removeClass("required");
+                $(industryField).attr("disabled", true);
+                $(industryField).val("industry-notset");
+                $("label[for='industry']").css("color","#999");
+                $(decisionRoleField).removeClass("required");
+                $(decisionRoleField).attr("disabled", true);
+                $(decisionRoleField).val("decisionrole-notset");
+                $("label[for='decisionrole']").css("color","#999");
+                $(officePhoneField).removeClass("required");
+                $(officePhoneField).attr("disabled", true);
+                $(officePhoneField).val("");
+                $("label[for='officephone']").css("color","#999");
+            }
+        }
+
         ///////////////////////
         // Creating the user //
         ///////////////////////
@@ -110,13 +146,24 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
          */
         var doCreateUser = function(){
             var values = getFormValues();
+            //var mktgData = {};
+
             $("button").attr("disabled", "disabled");
             $("input").attr("disabled", "disabled");
+
             sakai.api.User.createUser(values.username, values.firstName, values.lastName, values.email, values.password, values.password, {
                 recaptcha: {
                     challenge: values["recaptcha-challenge"],
                     response: values["recaptcha-response"]
-                }
+                },
+// rSmart: add collected marketing data to the create user call
+                ":marketing": $.toJSON({
+                    institution: values["institution"],
+                    role: values["role"],
+                    industry: values["industry"],
+                    decisionrole: values["decisionrole"],
+                    officephone: values["officephone"]
+                })
             }, function(success, data){
                 if (success) {
                     // This will hide the Create and Cancel button and offer a link back to the login page
@@ -242,6 +289,13 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
                 }
             });
 
+            $("#role").bind("change", function(){
+                var role = $.trim($(roleField).val());
+
+                // if role is 'Student' gray out the marketing fields; otherwise enable them
+                enableMarketingFields (role != "Student" && role != "");
+            });
+
             /*
              * Once the user is trying to submit the form, we check whether all the fields have valid
              * input and try to create the new account
@@ -274,6 +328,22 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
                         minlength: 3,
                         nospaces: true,
                         validusername: true
+                    },
+                    role: {
+                        minlength: 1,
+                        required: "#role"
+                    },
+                    decisionrole: {
+                        minlength: 1,
+                        required: "#decisionrole:enabled"
+                    },
+                    industry: {
+                        minlength: 1,
+                        required: "#industry:enabled"
+                    },
+                    officephone: {
+                        minlength: 7,
+                        required: "#officephone:enabled"
                     }
                 },
                 messages: {
@@ -343,6 +413,7 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
             // Initialize the captcha widget.
             initCaptcha();
             doBinding();
+            enableMarketingFields(false);
         };
 
         var renderEntity = function(){

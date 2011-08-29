@@ -12,10 +12,12 @@ h2 {color:#666;font-size:15px;}
 #signup_form_container .signup_form_column_fields, #signup_form_container .signup_form_column_labels {width:40%;float:left;}
 #signup_form_container .signup_form_column_fields {width:60%;}
 #signup_form_container .signup_form_column {width:370px;float:left;margin-top:12px;}
-#signup_form_container .signup_form_column label, .signup_form_column input {clear:both;display:block;float:left;margin-bottom:15px;}
+#signup_form_container .signup_form_column label, .signup_form_column input, .signup_form_column select {clear:both;display:block;float:left;margin-bottom:15px;}
 #signup_form_container .signup_form_column label {float:right;margin-right:8px;margin-top:6px;color:#666;}
+#signup_form_container #decisionrole {margin-bottom:23px;}
 #signup_form_container .signup_form_column input {border:1px solid #e0e1e2;height:21px;width:200px;padding:0 5px;color:#333;}
 #signup_form_container .signup_form_column input.username_unavailable_icon {width:185px;padding:0 20px 0 5px;}
+#signup_form_container .signup_form_column select {border:1px solid #e0e1e2;height:23px;width:200px;padding:0 5px;color:#333;}
 #signup_form_container #signup_form_shadow {background:url("/dev/images/signup_form_bgshadow.png") no-repeat scroll left top transparent;height:15px;margin-left:95px;margin-top:-14px;position:absolute;width:700px;}
 #signup_form_container #checkUserName{float:right;margin-top:10px;}
 #signup_form_container input::-webkit-input-placeholder {color:#aaa;font-size:12px;}
