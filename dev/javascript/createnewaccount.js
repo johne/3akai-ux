@@ -105,7 +105,7 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
             return values;
         };
 
-        var enableMarketingFields = function (enabled)
+        var enableRegistrationFields = function (enabled)
         {
             if (enabled)
             {
@@ -142,6 +142,31 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
             }
         }
 
+        var getCookie = function (key)
+        {
+            var
+                i,
+                ind,
+                c_key,
+                c_val,
+                cookieArr = document.cookie.split(";");
+
+            for (i=0; i< cookieArr.length;i++)
+            {
+                ind = cookieArr[i].indexOf("=");
+
+                c_key = cookieArr[i].substr(0, ind);
+                c_val = cookieArr[i].substr(ind + 1);
+
+                c_key = c_key.replace(/^\s+|\s+$/g,"");
+                
+                if (c_key == key)
+                {
+                    return decodeURI(c_val);
+                }
+            }
+        }
+
         ///////////////////////
         // Creating the user //
         ///////////////////////
@@ -162,8 +187,9 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
                     challenge: values["recaptcha-challenge"],
                     response: values["recaptcha-response"]
                 },
-// rSmart: add collected marketing data to the create user call
-                ":marketing": $.toJSON({
+// rSmart: add collected registration data to the create user call
+                ":registration": $.toJSON({
+                    hubspotutk: getCookie ("hubspotutk"),
                     institution: values["institution"],
                     role: values["role"],
                     industry: values["industry"],
@@ -298,8 +324,8 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
             $("#role").bind("change", function(){
                 var role = $.trim($(roleField).val());
 
-                // if role is 'Student' gray out the marketing fields; otherwise enable them
-                enableMarketingFields (role != "Student" && role != "");
+                // if role is 'Student' gray out the rSmart registration fields; otherwise enable them
+                enableRegistrationFields (role != "Student" && role != "");
             });
 
             /*
@@ -341,15 +367,15 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
                     },
                     decisionrole: {
                         minlength: 1,
-                        required: "#decisionrole:enabled"
+                        required: "#decisionrole:visible"
                     },
                     industry: {
                         minlength: 1,
-                        required: "#industry:enabled"
+                        required: "#industry:visible"
                     },
                     officephone: {
                         minlength: 7,
-                        required: "#officephone:enabled"
+                        required: "#officephone:visible"
                     }
                 },
                 messages: {
@@ -419,7 +445,7 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
             // Initialize the captcha widget.
             initCaptcha();
             doBinding();
-            enableMarketingFields(false);
+            enableRegistrationFields(false);
         };
 
         var renderEntity = function(){

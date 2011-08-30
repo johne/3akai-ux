@@ -86,9 +86,9 @@ define(
                         case "template":
                             user["template"] = "/var/templates/site/" + extraOptions[i];
                             break;
-// rSmart: include marketing data in call
-                        case ":marketing":
-                            user[":marketing"] = extraOptions[i];
+// rSmart: include registration data in call
+                        case ":registration":
+                            user[":registration"] = extraOptions[i];
                         default:
                             break;
                     }
