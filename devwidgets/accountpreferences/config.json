@@ -2,6 +2,7 @@
     "description":"Account Preferences",
     "name":"Account Preferences",
     "id":"accountpreferences",
+    "personalportal":true,
     "i18n": {
         "default": "/devwidgets/accountpreferences/bundles/default.properties"
     },

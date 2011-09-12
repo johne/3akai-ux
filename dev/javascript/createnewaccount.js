@@ -36,6 +36,7 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
 
         // Input fields
         var usernameField = "#username";
+        var titleField = "#title";
         var firstNameField = "#firstName";
         var lastNameField = "#lastName";
         var emailField = "#email";
@@ -44,9 +45,11 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
         var captchaField = "#uword";
         var institutionField = "#institution";
         var roleField = "#role";
-        var industryField = "#industry";
-        var decisionRoleField = "#decisionrole";
-        var officePhoneField = "#officephone";
+        var phoneField = "#phone";
+        var lmsField = "#currentLms";
+        var emailContactField = "#emailContact";
+        var callMeField = "#callMe";
+        var noContactField = "#noContact";
 
         // Error fields
         var usernameTaken = "#username_taken";
@@ -105,40 +108,18 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
             return values;
         };
 
-        var enableRegistrationFields = function (enabled)
+        var setRoleIsStudent = function (isStudent)
         {
-            if (enabled)
+            if (isStudent)
             {
-                $(industryField).addClass("required");
-                $(industryField).removeAttr("disabled");
-                $(industryField).show();
-                $("label[for='industry']").show();
-                $(decisionRoleField).addClass("required");
-                $(decisionRoleField).removeAttr("disabled");
-                $(decisionRoleField).show();
-                $("label[for='decisionrole']").show();
-                $(officePhoneField).addClass("required");
-                $(officePhoneField).removeAttr("disabled");
-                $(officePhoneField).show();
-                $("label[for='officephone']").show();
+                $(emailContactField).removeAttr ('checked');
+                $(callMeField).removeAttr ('checked');
+                $(noContactField).attr ('checked', 'checked');
             }
             else
             {
-                $(industryField).removeClass("required");
-//                $(industryField).("disabled", true);
-                $(industryField).val("industry-notset");
-                $(industryField).hide();
-                $("label[for='industry']").hide();
-                $(decisionRoleField).removeClass("required");
-//                $(decisionRoleField).attr("disabled", true);
-                $(decisionRoleField).val("decisionrole-notset");
-                $(decisionRoleField).hide();
-                $("label[for='decisionrole']").hide();
-                $(officePhoneField).removeClass("required");
-//                $(officePhoneField).attr("disabled", true);
-                $(officePhoneField).val("");
-                $(officePhoneField).hide();
-                $("label[for='officephone']").hide();
+                $(emailContactField).attr ('checked', 'checked');
+                $(noContactField).removeAttr ('checked');
             }
         }
 
@@ -190,11 +171,17 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
 // rSmart: add collected registration data to the create user call
                 ":registration": $.toJSON({
                     hubspotutk: getCookie ("hubspotutk"),
+                    title: values["title"],
                     institution: values["institution"],
                     role: values["role"],
-                    industry: values["industry"],
-                    decisionrole: values["decisionrole"],
-                    officephone: values["officephone"]
+                    phone: values["phone"],
+                    currentLms: values["currentLms"],
+                    contactPreferences:
+                    {
+                        emailContact: values["emailContact"],
+                        callMe: values["callMe"],
+                        noContact: values["noContact"]
+                    }
                 })
             }, function(success, data){
                 if (success) {
@@ -324,8 +311,7 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
             $("#role").bind("change", function(){
                 var role = $.trim($(roleField).val());
 
-                // if role is 'Student' gray out the rSmart registration fields; otherwise enable them
-                enableRegistrationFields (role != "Student" && role != "");
+                setRoleIsStudent (role == 'Student');
             });
 
             /*
@@ -445,7 +431,7 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
             // Initialize the captcha widget.
             initCaptcha();
             doBinding();
-            enableRegistrationFields(false);
+            setRoleIsStudent(false);
         };
 
         var renderEntity = function(){

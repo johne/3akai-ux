@@ -53,38 +53,45 @@
                                 <h1 class="signup_header">__MSG__CREATE_A_NEW_ACCOUNT__</h1>
                                 <div class="signup_form_column">
                                     <div class="signup_form_column_labels">
-                                        <label for="firstName" class="firstName">__MSG__FIRSTNAME__:</label>
-                                        <label for="lastName" class="lastName">__MSG__LASTNAME__:</label>
-                                        <label for="email" class="email">__MSG__EMAIL__:</label>
-                                <!-- rSmart: moved to first column to accommodate marketing fields -->
                                         <label id="username_label" class="username" for="username">__MSG__USERNAME__:</label>
-                                        <label for="password" class="password">__MSG__PASSWORD__:</label>
-                                        <label for="password_repeat" class="password_repeat">__MSG__RE_TYPE_PASSWORD__:</label>
+                                        <label id="password_label" for="password" class="password">__MSG__PASSWORD__:</label>
+                                        <label id="password_repeat_label" for="password_repeat" class="password_repeat">__MSG__RE_TYPE_PASSWORD__:</label>
+                                        <label id="title_label" for="title" class="title">__MSG__PERSONTITLE__:</label>
+                                        <label id="firstName_label" for="firstName" class="firstName">__MSG__FIRSTNAME__:</label>
+                                        <label id="lastName_label" for="lastName" class="lastName">__MSG__LASTNAME__:</label>
+                                        <label id="email_label" for="email" class="email">__MSG__EMAIL__:</label>
                                     </div>
                                     <div class="signup_form_column_fields">
-                                        <div class="create_account_input_error" style="display:none;"><!----></div>
-                                        <input type="text" maxlength="255" id="firstName" name="firstName" class="create_account_input required" placeholder="Hiroyuki"/>
-                                        <div class="create_account_input_error" style="display:none;"><!----></div>
-                                        <input type="text" maxlength="255" id="lastName" name="lastName" class="create_account_input required" placeholder="Sakai"/>
-                                        <div class="create_account_input_error" style="display:none;"><!----></div>
-                                        <input type="text" maxlength="255" id="email" name="email" class="create_account_input required email" placeholder="hiroyuki.sakai@example.com"/>
-                                <!-- rSmart: moved to first column to accommodate marketing fields -->
                                         <div class="create_account_input_error" id="create_account_username_error" style="display:none;"><!----></div>
                                         <input type="text" maxlength="255" id="username" name="username" class="username_unavailable_icon create_account_input required" placeholder="Hiroyuki"/>
                                         <div class="create_account_input_error" style="display:none;"><!----></div>
                                         <input type="password" maxlength="255" id="password" name="password" class="create_account_input required" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;"/>
                                         <div class="create_account_input_error" style="display:none;"><!----></div>
                                         <input type="password" maxlength="255" id="password_repeat" name="password_repeat" class="create_account_input required" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;"/>
+                                        <div class="create_account_input_error" style="display:none;"><!----></div>
+                                        <select id="title" name="title" class="create_account_input required">
+                                            <option id="title-notset" value="">__MSG__PERSONTITLE_SELECT__</option>
+                                            <option id="title-mr" value="Mr.">__MSG__PERSONTITLE_MR__</option>
+                                            <option id="title-ms" value="Ms.">__MSG__PERSONTITLE_MS__</option>
+                                            <option id="title-mrs" value="Mrs.">__MSG__PERSONTITLE_MRS__</option>
+                                            <option id="title-dr" value="Dr.">__MSG__PERSONTITLE_DR__</option>
+                                            <option id="title-rev" value="Rev.">__MSG__PERSONTITLE_REV__</option>
+                                        </select>
+                                        <div class="create_account_input_error" style="display:none;"><!----></div>
+                                        <input type="text" maxlength="255" id="firstName" name="firstName" class="create_account_input required" placeholder="Hiroyuki"/>
+                                        <div class="create_account_input_error" style="display:none;"><!----></div>
+                                        <input type="text" maxlength="255" id="lastName" name="lastName" class="create_account_input required" placeholder="Sakai"/>
+                                        <div class="create_account_input_error" style="display:none;"><!----></div>
+                                        <input type="text" maxlength="255" id="email" name="email" class="create_account_input required email" placeholder="hiroyuki.sakai@example.com"/>
                                     </div>
                                 </div>
                                 <div class="signup_form_column">
                                 <!-- rSmart: begin new fields to gather marketing data -->
                                     <div class="signup_form_column_labels">
-                                        <label for="institution" class="institution">__MSG__INSTITUTION__:</label>
-                                        <label for="role" class="role">__MSG__ROLE__:</label>
-                                        <label for="industry" class="industry">__MSG__INDUSTRY__:</label>
-                                        <label for="decisionrole" class="decisionrole">__MSG__DECISIONROLE__:</label>
-                                        <label for="officephone" class="officephone">__MSG__OFFICEPHONE__:</label>
+                                        <label id="institution_label" for="institution" class="institution">__MSG__INSTITUTION__:</label>
+                                        <label id="role_label" for="role" class="role">__MSG__ROLE__:</label>
+                                        <label id="phone_label" for="phone" class="phone">__MSG__PHONENO__:</label>
+                                        <label id="currentLms_label" for="currentLms" class="currentLms">__MSG__LMS__:</label>
                                     </div>
                                     <div class="signup_form_column_fields">
                                         <div class="create_account_input_error" id="create_account_institution_error" style="display:none;"><!----></div>
@@ -98,52 +105,41 @@
                                             <option id="role-staff" value="Staff">__MSG__ROLE_STAFF__</option>
                                             <option id="role-other" value="other">__MSG__ROLE_OTHER__</option>                                            
                                         </select>
-                                        <div id="create_account_industry_error" class="create_account_industry_error" style="display:none;"><!----></div>
-                                        <select id="industry" name="industry" class="create_account_input required">
-                                            <option id="industry-notset" value="">__MSG__INDUSTRY_SELECT__</option>
-                                            <option id="industry-college" value="College/University">__MSG__INDUSTRY_COLLEGE__</option>
-                                            <option id="industry-comm-college" value="Community College">__MSG__INDUSTRY_COMMUNITY_COLLEGE__</option>
-                                            <option id="industry-consulting" value="Consulting">__MSG__INDUSTRY_CONSULTING__</option>
-                                            <option id="industry-government" value="Government">__MSG__INDUSTRY_GOVERNMENT__</option>
-                                            <option id="industry-corporate" value="Corporate">__MSG__INDUSTRY_CORPORATE__</option>
-                                            <option id="industry-k12" value="K-12">__MSG__INDUSTRY_K12__</option>
-                                            <option id="industry-nonprofit" value="Non Profit">__MSG__INDUSTRY_NONPROFIT__</option>
-                                            <option id="industry-other" value="Other">__MSG__INDUSTRY_OTHER__</option>
+                                        <div class="create_account_phone_error" id="create_account_phone_error" style="display:none;"><!----></div>
+                                        <input type="text" maxlength="255" id="phone" name="phone" class="create_account_input" placeholder="(201)555-1212"/>
+                                        <div id="create_account_lms_error" class="create_account_lms_error" style="display:none;"><!----></div>
+                                        <select id="currentLms" name="currentLms" >
+                                            <option id="currentLms-notset" value="">__MSG__LMS_SELECT__</option>
+                                            <option id="currentLms-angel" value="Angel">__MSG__LMS_ANGEL__</option>
+                                            <option id="currentLms-blackboard" value="Blackboard">__MSG__LMS_BLACKBOARD__</option>
+                                            <option id="currentLms-blackboard-basic" value="Blackboard Basic">__MSG__LMS_BLACKBOARD_BASIC__</option>
+                                            <option id="currentLms-blackboard-campus" value="Blackboard Campus Edition">__MSG__LMS_BLACKBOARD_CAMPUS__</option>
+                                            <option id="currentLms-blackboard-vista" value="Blackboard Vista">__MSG__LMS_BLACKBOARD_VISTA__</option>
+                                            <option id="currentLms-desire2learn" value="Desire2Learn">__MSG__LMS_DESIRE2LEARN__</option>
+                                            <option id="currentLms-ecollege" value="eCollege">__MSG__LMS_ECOLLEGE__</option>
+                                            <option id="currentLms-canvas" value="Canvas">__MSG__LMS_CANVAS__</option>
+                                            <option id="currentLms-homegrown" value="Homegrown">__MSG__LMS_HOMEGROWN__</option>
+                                            <option id="currentLms-model" value="Moodle">__MSG__LMS_MOODEL__</option>
+                                            <option id="currentLms-sakai" value="Sakai CLE">__MSG__SAKAI__</option>
+                                            <option id="currentLms-rsmart-sakai" value="rSmart Sakai CLE">__MSG__LMS_RSMART_SAKAI__</option>
+                                            <option id="currentLms-other" value="Other">__MSG__LMS_OTHER__</option>
+                                            <option id="currentLms-none" value="None">__MSG__LMS_NONE__</option>
+                                            <option id="currentLms-dontknow" value="I Don't Know">__MSG__LMS_DONTKNOW__</option>
                                         </select>
-                                        <div id="create_account_decisionrole_error" class="create_account_decisionrole_error" style="display:none;"><!----></div>
-                                        <select id="decisionrole" name="decisionrole" class="create_account_input required">
-                                            <option id="decisionrole-notset" value="">__MSG__DECISIONROLE_SELECT__</option>                                            
-                                            <option id="decisionrole-primary" value="Primary Decision Maker">__MSG__DECISIONROLE_PRIMARY__</option>
-                                            <option id="decisionrole-business" value="Businesss Decision Maker">__MSG__DECISIONROLE_BUSINESS__</option>
-                                            <option id="decisionrole-businesseval" value="Businesss Evaluator">__MSG__DECISIONROLE_BUSINESSEVAL__</option>
-                                            <option id="decisionrole-technical" value="Technical Decision Maker">__MSG__DECISIONROLE_TECHNICAL__</option>
-                                            <option id="decisionrole-technicaleval" value="Technical Evaluator">__MSG__DECISIONROLE_TECHNICALEVAL__</option>
-                                            <option id="decisionrole-exec" value="Executive Sponsor">__MSG__DECISIONROLE_EXEC__</option>
-                                            <option id="decisionrole-influencer" value="Influencer">__MSG__DECISIONROLE_INFLUENCER__</option>
-                                            <option id="decisionrole-other" value="Other">__MSG__DECISIONROLE_OTHER__</option>
-                                        </select>
-                                        <div class="create_account_officephone_error" id="create_account_officephone_error" style="display:none;"><!----></div>
-                                        <input type="text" maxlength="255" id="officephone" name="officephone" class="create_account_input required" placeholder="(201)555-1212"/>
-                                    </div>
-                                <!-- rSmart: end new fields to gather marketing data -->
-                                </div>
-<!--
-                                <div class="signup_form_column">
-                                    <div class="signup_form_column_labels">
-                                        <label id="username_label" class="username" for="username">__MSG__USERNAME__:</label>
-                                        <label for="password" class="password">__MSG__PASSWORD__:</label>
-                                        <label for="password_repeat" class="password_repeat">__MSG__RE_TYPE_PASSWORD__:</label>
-                                    </div>
-                                    <div class="signup_form_column_fields">
-                                        <div class="create_account_input_error" id="create_account_username_error" style="display:none;">--><!----><!--</div>
-                                        <input type="text" maxlength="255" id="username" name="username" class="username_unavailable_icon create_account_input required" placeholder="Hiroyuki"/>
-                                        <div class="create_account_input_error" style="display:none;">--><!----><!--</div>
-                                        <input type="password" maxlength="255" id="password" name="password" class="create_account_input required" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;"/>
-                                        <div class="create_account_input_error" style="display:none;">--><!----><!--</div>
-                                        <input type="password" maxlength="255" id="password_repeat" name="password_repeat" class="create_account_input required" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;"/>
                                     </div>
                                 </div>
--->
+                                <div id="contact_form_registration_checks" style="clear: both;">
+                                    <h1 class="signup_header">__MSG__CONTACT_PREFERENCES__</h1>
+                                    <label style="display:block;">
+                                        <input type="checkbox" id="emailContact" name="emailContact" checked="true"
+                                               style="margin:10px 10px 10px 50px;"/>__MSG__EMAILCONTACT__</label>
+                                    <label style="display:block;">
+                                        <input type="checkbox" id="callMe" name="callMe"
+                                                style="margin:10px 10px 10px 50px;"/>__MSG__CALLME__</label>
+                                    <label style="display:block;">
+                                        <input type="checkbox" id="noContact" name="noContact"
+                                            style="margin:10px 10px 10px 50px;"/>__MSG__NOCONTACT__</label>
+                                </div>
                                 <div class="captcha_container" id="captcha_box">
                                     <button id="save_account" class="s3d-button s3d-large-button" type="submit" tabindex="8">__MSG__CREATE_ACCOUNT__</button>
                                     <div id="widget_captcha" class="widget_inline"></div>
