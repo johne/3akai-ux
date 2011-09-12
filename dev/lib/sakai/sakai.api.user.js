@@ -163,7 +163,7 @@ define(
         },
 
         getUser: function(userid, callback){
-            var authprofileURL = "/~" + sakai_util.urlSafe(userid) + "/public/authprofile.profile.json";
+            var authprofileURL = "/~" + sakai_util.safeURL(userid) + "/public/authprofile.profile.json";
             sakai_serv.loadJSON(authprofileURL, function(success, data) {
                 if (success && data) {
                     callback(true, data);
@@ -320,7 +320,7 @@ define(
                 profile.basic.elements[eltName].value !== undefined) {
                     ret = profile.basic.elements[eltName].value;
                 }
-            return unescape(sakai_util.Security.saneHTML($.trim(ret)));
+            return $.trim(ret);
         },
 
         /**
@@ -429,7 +429,7 @@ define(
                 nameToReturn += profile.basic.elements[configFirstName].value;
             }
 
-            return unescape(sakai_util.Security.saneHTML($.trim(nameToReturn)));
+            return sakai_util.Security.saneHTML($.trim(nameToReturn));
         },
 
         /**
@@ -450,7 +450,8 @@ define(
                     profile.basic &&
                     profile.basic.elements &&
                     profile.basic.elements[key] !== undefined &&
-                    profile.basic.elements[key].value !== undefined) {
+                    profile.basic.elements[key].value !== undefined &&
+                    $.trim(profile.basic.elements[key].value) !== "") {
                    nameToReturn += profile.basic.elements[key].value + " ";
                    done = true;
                }
@@ -465,7 +466,16 @@ define(
                 idx++;
             }
 
-            return unescape(sakai_util.Security.saneHTML($.trim(nameToReturn)));
+            if(!done){
+                if(profile && profile["rep:userId"]){
+                    return profile["rep:userId"];
+                } else {
+                    return "";
+                }
+            } else {
+                return sakai_util.Security.safeOutput($.trim(nameToReturn));
+            }
+            return false;
         },
 
         /**
@@ -579,7 +589,7 @@ define(
 
         acceptContactInvite : function(inviteFrom, callback) {
             $.ajax({
-                url: "/~" + sakai_util.urlSafe(sakaiUserAPI.data.me.user.userid) + "/contacts.accept.html",
+                url: "/~" + sakai_util.safeURL(sakaiUserAPI.data.me.user.userid) + "/contacts.accept.html",
                 type: "POST",
                 data: {
                     "targetUserId": inviteFrom
@@ -610,7 +620,7 @@ define(
 
         ignoreContactInvite : function(inviteFrom, callback) {
             $.ajax({
-                url: "/~" + sakai_util.urlSafe(sakaiUserAPI.data.me.user.userid) + "/contacts.ignore.html",
+                url: "/~" + sakai_util.safeURL(sakaiUserAPI.data.me.user.userid) + "/contacts.ignore.html",
                 type: "POST",
                 data: {
                     "targetUserId": inviteFrom
@@ -624,7 +634,7 @@ define(
                         });
                     }
                     $.ajax({
-                        url: "/~" + sakai_util.urlSafe(sakaiUserAPI.data.me.user.userid) + "/contacts.remove.html",
+                        url: "/~" + sakai_util.safeURL(sakaiUserAPI.data.me.user.userid) + "/contacts.remove.html",
                         type: "POST",
                         data: {
                             "targetUserId": inviteFrom
@@ -747,7 +757,7 @@ define(
             }
 
             if (progressData !== ""){
-                var authprofileURL = "/~" + sakai_util.urlSafe(me.user.userid) + "/public/authprofile/userprogress";
+                var authprofileURL = "/~" + sakai_util.safeURL(me.user.userid) + "/public/authprofile/userprogress";
                 sakai_serv.saveJSON(authprofileURL, progressData, function(success, data){
                     // Check whether save was successful
                     if (success && refresh) {
