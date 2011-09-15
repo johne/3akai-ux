@@ -48,7 +48,7 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
         var phoneField = "#phone";
         var lmsField = "#currentLms";
         var emailContactField = "#emailContact";
-        var callMeField = "#callMe";
+        var contactMeField = "#contactMe";
         var noContactField = "#noContact";
 
         // Error fields
@@ -106,7 +106,7 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
             if (isStudent)
             {
                 $(emailContactField).removeAttr ('checked');
-                $(callMeField).removeAttr ('checked');
+                $(contactMeField).removeAttr ('checked');
                 $(noContactField).attr ('checked', 'checked');
             }
             else
@@ -172,7 +172,7 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
                     contactPreferences:
                     {
                         emailContact: values["emailContact"],
-                        callMe: values["callMe"],
+                        contactMe: values["contactMe"],
                         noContact: values["noContact"]
                     }
                 })
@@ -305,6 +305,29 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
                 var role = $.trim($(roleField).val());
 
                 setRoleIsStudent (role == 'Student');
+            });
+
+            $("#noContact").bind("change", function(){
+
+                if ($("#noContact:checked").val() !== undefined)
+                {
+                    $("#contactMe").removeAttr("checked");
+                    $("#emailContact").removeAttr("checked");
+                }
+            });
+
+            $("#contactMe").bind("change", function(){
+                if ($("#contactMe:checked").val() !== undefined)
+                {
+                    $("#noContact").removeAttr("checked");
+                }
+            });
+
+            $("#emailContact").bind("change", function(){
+                if ($("#emailContact:checked").val() !== undefined)
+                {
+                    $("#noContact").removeAttr("checked");
+                }
             });
 
             /*

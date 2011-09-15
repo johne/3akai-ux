@@ -53,6 +53,7 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai) {
         var $rootel = $("#" + tuid);
 
         var $acceptterms_action_accept = $("#acceptterms_action_accept", $rootel);
+        var $acceptterms_action_dont_accept = $("#acceptterms_action_dont_accept", $rootel);
         var $acceptterms_dialog = $("#acceptterms_dialog", $rootel);
         var $acceptterms_form = $("#acceptterms_form", $rootel);
         var $acceptterms_form_heading = $("h4:eq(0)", $acceptterms_form);
@@ -112,6 +113,15 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai) {
                      }
                 });
                 $acceptterms_dialog.jqmHide();
+                return false;
+            });
+
+            // Reinitialise the jQuery selector
+            $acceptterms_action_dont_accept = $($acceptterms_action_dont_accept.selector);
+
+            // Add binding to the don't accept button
+            $acceptterms_action_dont_accept.unbind("click").bind("click", function () {
+                document.location = "/logout";
                 return false;
             });
         };
