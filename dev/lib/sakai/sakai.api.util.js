@@ -1829,7 +1829,6 @@ define(
                         var user = require("sakai/sakai.api.user");
                         var q = sakai_serv.createSearchString(query);
                         var searchoptions = {"page": 0, "items": 15};
-                        /* Should investigate filtering this search to SEARCH_USERS_GROUPS_KNOWN */
                         var searchUrl = sakai_conf.URL.SEARCH_USERS_GROUPS;
                         if (q === '*' || q === '**') {
                             searchUrl = sakai_conf.URL.SEARCH_USERS_GROUPS_ALL;
