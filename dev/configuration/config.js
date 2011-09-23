@@ -111,6 +111,7 @@ define(function(){
             SEARCH_USERS: "/var/search/users.infinity.json",
             SEARCH_USERS_ALL: "/var/search/users-all.json",
             SEARCH_USERS_GROUPS: "/var/search/usersgroups.json",
+            SEARCH_USERS_GROUPS_KNOWN: "/var/search/usersgroups-known.json",
             SEARCH_USERS_GROUPS_ALL: "/var/search/usersgroups-all.json",
             SITE_ADD_MEMBERS_SERVICE: "/_rest/site/members/add/__SITE__",
             SITE_CONFIGFOLDER: "/sites/__SITEID__",
