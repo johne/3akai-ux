@@ -234,7 +234,7 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai) {
             source: function(query, add) {
                 var q = sakai.api.Server.createSearchString(query);
                 var options = {"page": 0, "items": 15};
-                var searchUrl = sakai.config.URL.SEARCH_USERS_GROUPS;
+                var searchUrl = sakai.config.URL.SEARCH_USERS_GROUPS_KNOWN;
                 if (pickerData.type === 'content') {
                     searchUrl = sakai.config.URL.POOLED_CONTENT_MANAGER;
                     if (q === '*' || q === '**') {
