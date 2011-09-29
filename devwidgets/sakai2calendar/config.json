@@ -2,13 +2,13 @@
     "sakaidocs":true,
     "ca":true,
     "hasSettings": false,
-    "description":"Sakai 2 Calendar",
+    "description":"Calendar",
     "id":"sakai2calendar",
     "i18n": {
         "default": "/devwidgets/sakai2calendar/bundles/default.properties"
     },
     "img":"/devwidgets/sakai2calendar/images/sakai2calendar.png",
-    "name":"Sakai 2 Calendar",
+    "name":"Calendar",
     "type":"sakai",
     "enabled":true,
     "url":"/devwidgets/sakai2calendar/sakai2calendar.html",
