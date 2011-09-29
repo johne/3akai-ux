@@ -37,7 +37,7 @@ require(["jquery", "sakai/sakai.api.core", "sakai/sakai.api.widgets"], function(
      * @param {String} tuid Unique id of the widget
      * @param {Boolean} showSettings Show the settings of the widget or not
      */
-    sakai_global.sakai2calendar = function(tuid, showSettings){
+    sakai_global.sakai2gradebook = function(tuid, showSettings){
 
 
         /////////////////////////////
@@ -131,7 +131,7 @@ require(["jquery", "sakai/sakai.api.core", "sakai/sakai.api.widgets"], function(
          */
         var savedDataToJCR = function(success, data){
             displayRemoteContent(data);
-            sakai.api.Widgets.Container.informFinish(tuid, "sakai2calendar");
+            sakai.api.Widgets.Container.informFinish(tuid, "sakai2gradebook");
         };
 
         //////////////////////
@@ -212,7 +212,7 @@ require(["jquery", "sakai/sakai.api.core", "sakai/sakai.api.widgets"], function(
             };
 
 
-            json["lti_virtual_tool_id"] = "sakai.schedule";
+            json["lti_virtual_tool_id"] = "sakai.gradebook.tool";
             json[":operation"] = "basiclti";
             json["sling:resourceType"] = "sakai/basiclti";
             json.ltikey = $(basicltiSettingsLtiKey).val() || "";
@@ -249,7 +249,7 @@ require(["jquery", "sakai/sakai.api.core", "sakai/sakai.api.widgets"], function(
 
             // Cancel it
             $(basicltiSettingsCancel).click(function(){
-                sakai.api.Widgets.Container.informCancel(tuid, "sakai2calendar");
+                sakai.api.Widgets.Container.informCancel(tuid, "sakai2gradebook");
             });
         }
 
@@ -279,7 +279,7 @@ require(["jquery", "sakai/sakai.api.core", "sakai/sakai.api.widgets"], function(
                     frame_height: defaultHeight,
                     width: defaultWidth,
                     width_unit: defaultWidthUnit,
-                    lti_virtual_tool_id: "sakai.schedule",
+                    lti_virtual_tool_id: "sakai.gradebook.tool",
                     isSakai2Tool: true
                 };
             }
@@ -335,5 +335,5 @@ require(["jquery", "sakai/sakai.api.core", "sakai/sakai.api.widgets"], function(
         getRemoteContent();
     };
 
-    sakai.api.Widgets.widgetLoader.informOnLoad("sakai2calendar");
+    sakai.api.Widgets.widgetLoader.informOnLoad("sakai2gradebook");
 });
