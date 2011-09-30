@@ -1,3 +1,4 @@
+
 #signup_header {background:url("/dev/images/signup_artwork.png") no-repeat scroll left top transparent;height:520px;width:920px;}
 #signup_header_bg {background:url("/dev/images/signup_header_bg.png") repeat scroll left top transparent;border-radius:0 0 6px 6px;-moz-border-radius:0 0 6px 6px;-webkit-border-radius:0 0 6px 6px;padding:10px;}
 #signup_form_container {background:url("/dev/images/signup_form_bg.png") repeat-x scroll left top #edecec;border-radius:6px;-moz-border-radius:6px;-webkit-border-radius:6px;min-height:280px;;margin-top:-120px;box-shadow:0 5px 7px -6px #424242;padding:0 15px 15px;}
@@ -14,6 +15,13 @@ h2 {color:#666;font-size:15px;}
 #signup_form_container .signup_form_column {width:370px;float:left;margin-top:12px;}
 #signup_form_container .signup_form_column label, .signup_form_column input, .signup_form_column select {clear:both;display:block;float:left;margin-bottom:15px;}
 #signup_form_container .signup_form_column label {float:right;margin-right:8px;margin-top:6px;color:#666;}
+label.required
+{
+background-image:url("/dev/images/required.png");
+background-position:top left;
+background-repeat:no-repeat;
+padding-left:15px;
+}
 #signup_form_container .signup_form_column input {border:1px solid #e0e1e2;height:21px;width:200px;padding:0 5px;color:#333;}
 #signup_form_container .signup_form_column input.username_unavailable_icon {width:185px;padding:0 20px 0 5px;}
 #signup_form_container .signup_form_column select {border:1px solid #e0e1e2;height:23px;width:200px;padding:0 5px;color:#333;}

@@ -53,13 +53,13 @@
                                 <h1 class="signup_header">__MSG__CREATE_A_NEW_ACCOUNT__</h1>
                                 <div class="signup_form_column">
                                     <div class="signup_form_column_labels">
-                                        <label id="username_label" class="username" for="username">__MSG__USERNAME__:</label>
-                                        <label id="password_label" for="password" class="password">__MSG__PASSWORD__:</label>
-                                        <label id="password_repeat_label" for="password_repeat" class="password_repeat">__MSG__RE_TYPE_PASSWORD__:</label>
-                                        <label id="title_label" for="title" class="title">__MSG__PERSONTITLE__:</label>
-                                        <label id="firstName_label" for="firstName" class="firstName">__MSG__FIRSTNAME__:</label>
-                                        <label id="lastName_label" for="lastName" class="lastName">__MSG__LASTNAME__:</label>
-                                        <label id="email_label" for="email" class="email">__MSG__EMAIL__:</label>
+                                        <label id="username_label" class="username required" for="username">__MSG__USERNAME__:</label>
+                                        <label id="password_label" for="password" class="password required">__MSG__PASSWORD__:</label>
+                                        <label id="password_repeat_label" for="password_repeat" class="password_repeat required">__MSG__RE_TYPE_PASSWORD__:</label>
+                                        <label id="title_label" for="title" class="title required">__MSG__PERSONTITLE__:</label>
+                                        <label id="firstName_label" for="firstName" class="firstName required">__MSG__FIRSTNAME__:</label>
+                                        <label id="lastName_label" for="lastName" class="lastName required">__MSG__LASTNAME__:</label>
+                                        <label id="email_label" for="email" class="email required">__MSG__EMAIL__:</label>
                                     </div>
                                     <div class="signup_form_column_fields">
                                         <div class="create_account_input_error" id="create_account_username_error" style="display:none;"><!----></div>
@@ -88,8 +88,8 @@
                                 <div class="signup_form_column">
                                 <!-- rSmart: begin new fields to gather marketing data -->
                                     <div class="signup_form_column_labels">
-                                        <label id="institution_label" for="institution" class="institution">__MSG__INSTITUTION__:</label>
-                                        <label id="role_label" for="role" class="role">__MSG__ROLE__:</label>
+                                        <label id="institution_label" for="institution" class="institution required">__MSG__INSTITUTION__:</label>
+                                        <label id="role_label" for="role" class="role required">__MSG__ROLE__:</label>
                                         <label id="phone_label" for="phone" class="phone">__MSG__PHONENO__:</label>
                                         <label id="currentLms_label" for="currentLms" class="currentLms">__MSG__LMS__:</label>
                                     </div>
@@ -97,7 +97,7 @@
                                         <div class="create_account_input_error" id="create_account_institution_error" style="display:none;"><!----></div>
                                         <input type="text" maxlength="255" id="institution" name="institution" class="create_account_input required" placeholder="My University/College"/>
                                         <div id="create_account_role_error" class="create_account_role_error" style="display:none;"><!----></div>
-                                        <select id="role" name="role" >
+                                        <select id="role" name="role" class="required">
                                             <option id="role-notset" value="">__MSG__ROLE_SELECT__</option>
                                             <option id="role-student" value="Student">__MSG__ROLE_STUDENT__</option>
                                             <option id="role-instructor" value="Instructor">__MSG__ROLE_INSTRUCTOR__</option>
