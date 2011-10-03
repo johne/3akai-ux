@@ -49,7 +49,6 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
         var lmsField = "#currentLms";
         var emailContactField = "#emailContact";
         var contactMeField = "#contactMe";
-        var noContactField = "#noContact";
 
         // Error fields
         var usernameTaken = "#username_taken";
@@ -107,12 +106,10 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
             {
                 $(emailContactField).removeAttr ('checked');
                 $(contactMeField).removeAttr ('checked');
-                $(noContactField).attr ('checked', 'checked');
             }
             else
             {
                 $(emailContactField).attr ('checked', 'checked');
-                $(noContactField).removeAttr ('checked');
             }
         }
 
@@ -172,8 +169,7 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
                     contactPreferences:
                     {
                         emailContact: values["emailContact"],
-                        contactMe: values["contactMe"],
-                        noContact: values["noContact"]
+                        contactMe: values["contactMe"]
                     }
                 })
             }, function(success, data){
@@ -305,29 +301,6 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
                 var role = $.trim($(roleField).val());
 
                 setRoleIsStudent (role == 'Student');
-            });
-
-            $("#noContact").bind("change", function(){
-
-                if ($("#noContact:checked").val() !== undefined)
-                {
-                    $("#contactMe").removeAttr("checked");
-                    $("#emailContact").removeAttr("checked");
-                }
-            });
-
-            $("#contactMe").bind("change", function(){
-                if ($("#contactMe:checked").val() !== undefined)
-                {
-                    $("#noContact").removeAttr("checked");
-                }
-            });
-
-            $("#emailContact").bind("change", function(){
-                if ($("#emailContact:checked").val() !== undefined)
-                {
-                    $("#noContact").removeAttr("checked");
-                }
             });
 
             /*
