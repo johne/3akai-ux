@@ -1,0 +1,20 @@
+{
+    "sakaidocs":true,
+    "ca":true,
+    "hasSettings": false,
+    "description":"Tests and Quizzes",
+    "id":"sakai2samigo",
+    "i18n": {
+        "default": "/devwidgets/sakai2samigo/bundles/default.properties"
+    },
+    "img":"/devwidgets/sakai2samigo/images/sakai2samigo.png",
+    "name":"Tests and Quizzes",
+    "type":"sakai",
+    "enabled":true,
+    "url":"/devwidgets/sakai2samigo/sakai2samigo.html",
+    "userpages": true,
+    "userdashboard": true,
+    "grouppages": true,
+    "groupdashboard": true,
+    "showinsakaigoodies":true
+}
