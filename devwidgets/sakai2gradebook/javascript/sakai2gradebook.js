@@ -212,7 +212,7 @@ require(["jquery", "sakai/sakai.api.core", "sakai/sakai.api.widgets"], function(
             };
 
 
-            json["lti_virtual_tool_id"] = "sakai.gradebook.tool";
+            json["lti_virtual_tool_id"] = "sakai.gradebook.gwt.rpc";
             json[":operation"] = "basiclti";
             json["sling:resourceType"] = "sakai/basiclti";
             json.ltikey = $(basicltiSettingsLtiKey).val() || "";
@@ -279,7 +279,7 @@ require(["jquery", "sakai/sakai.api.core", "sakai/sakai.api.widgets"], function(
                     frame_height: defaultHeight,
                     width: defaultWidth,
                     width_unit: defaultWidthUnit,
-                    lti_virtual_tool_id: "sakai.gradebook.tool",
+                    lti_virtual_tool_id: "sakai.gradebook.gwt.rpc",
                     isSakai2Tool: true
                 };
             }
