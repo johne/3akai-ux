@@ -215,18 +215,6 @@ require(["jquery", "sakai/sakai.api.core", "sakai/sakai.api.widgets"], function(
             json["lti_virtual_tool_id"] = "sakai.gradebook.gwt.rpc";
             json[":operation"] = "basiclti";
             json["sling:resourceType"] = "sakai/basiclti";
-            json.ltikey = $(basicltiSettingsLtiKey).val() || "";
-            json.ltisecret = $(basicltiSettingsLtiSecret).val() || "";
-            json["release_names@TypeHint"] = "Boolean";
-            json.release_names = $('#basiclti_settings_release_names:checked').val() !== null;
-            json["release_principal_name@TypeHint"] = "Boolean";
-            json.release_principal_name = $('#basiclti_settings_release_principal_name:checked').val() !== null;
-            json["release_email@TypeHint"] = "Boolean";
-            json.release_email = $('#basiclti_settings_release_email:checked').val() !== null;
-            json.launchDataUrl = ""; // does not need to be persisted
-            json.tuidFrame = ""; // does not need to be persisted
-            json.defined = ""; // what the heck is this? Where does it come from?
-            json._MODIFIERS = null; // trimpath garbage - probably need a more selective way of saving data
 
             saveContentAjax(json);
         };
@@ -266,12 +254,6 @@ require(["jquery", "sakai/sakai.api.core", "sakai/sakai.api.widgets"], function(
             }
             else { // use default values
                 json = {
-                    ltiurl: "",
-                    ltikey: "",
-                    ltisecret: "",
-                    release_names: true,
-                    release_principal_name: true,
-                    release_email: true,
                     border_size: 0,
                     border_color: "cccccc",
                     frame_height: defaultHeight,
