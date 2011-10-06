@@ -59,8 +59,6 @@ require(["jquery", "sakai/sakai.api.core", "sakai/sakai.api.widgets"], function(
         var basicltiSettingsInsert = basicltiSettings + "_insert";
         var basicltiSettingsPreviewId = tuid + "_frame";
         var basicltiSettingsPreviewFrame = "#" + basicltiSettingsPreviewId;
-        var basicltiSettingsLtiKey = basicltiSettings + "_ltikey";
-        var basicltiSettingsLtiSecret = basicltiSettings + "_ltisecret";
 
         // Containers
         var basicltiMainContainer = basiclti + "_main_container";
@@ -76,55 +74,6 @@ require(["jquery", "sakai/sakai.api.core", "sakai/sakai.api.widgets"], function(
         ///////////////////////
         // Utility functions //
         ///////////////////////
-
-        /**
-         * Check if the value is a decimal or not
-         * @param {Object} value Value that needs to be checked
-         * @return {Boolean}
-         *     true: is a decimal
-         *     false: is not a decimal
-         */
-        var isDecimal = function(value){
-            return (/^\d+$/).test(value);
-        };
-
-        /**
-         * Check if the input url is in fact an url or not
-         * @param {String} url Url that needs to be tested
-         * @return {Boolean}
-         *     true: is an url
-         *     false: is not an url
-         */
-        var isUrl = function(url){
-            var matches = urlRegExp.exec(url);
-            // e.g. if("http:" && "localhost")
-            if(matches[1] && matches[4]) {
-                return true;
-            } else {
-                return false;
-            }
-        };
-
-        /**
-         * Check to see if both URLs are in the same origin. See: http://en.wikipedia.org/wiki/Same_origin_policy.
-         * @param {String} url1
-         * @param {String} url2
-         * @return {Boolean}
-         *     true: in the same origin policy
-         *     false: NOT in the same origin policy
-         */
-        var isSameOriginPolicy = function(url1, url2){
-            if(url1 == url2) {
-                return true;
-            }
-            // i.e. protocol, domain (and optional port numbers) must match
-            if((urlRegExp.exec(url1)[2] == urlRegExp.exec(url2)[2]) &&
-               (urlRegExp.exec(url1)[4] == urlRegExp.exec(url2)[4])){
-                return true;
-            } else {
-                return false;
-            }
-        };
 
         /**
          * Called when the data has been saved to the JCR.
@@ -148,12 +97,9 @@ require(["jquery", "sakai/sakai.api.core", "sakai/sakai.api.widgets"], function(
                 json.launchDataUrl = sakaiWidgetsAPI.widgetLoader.widgets[tuid].placement + ".launch.html";
                 $("#" + json.tuidFrame).attr("src", json.launchDataUrl);
 
-                // resize the iframe to match inner body height if in the same origin (i.e. same protocol/domain/port)
-                if(isSameOriginPolicy(window.location.href, json.ltiurl)) {
-                    $(basicltiSettingsPreviewFrame).load(function() {
-                        $(this).height($(this).contents().find("body").height() + 15); // add 10px for IE and 5px more for Gradebook weirdness
-                    });
-                }
+                $(basicltiSettingsPreviewFrame).load(function() {
+                    $(this).height($(this).contents().find("body").height() + 15); // add 10px for IE and 5px more for Gradebook weirdness
+                });
 
                 // SAKIII-314 We need to show the container, otherwise the second item won't be shown.
                 $(basicltiMainContainer, rootel).show();
