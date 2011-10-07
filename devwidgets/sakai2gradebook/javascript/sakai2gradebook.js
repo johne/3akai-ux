@@ -59,8 +59,6 @@ require(["jquery", "sakai/sakai.api.core", "sakai/sakai.api.widgets"], function(
         var basicltiSettingsInsert = basicltiSettings + "_insert";
         var basicltiSettingsPreviewId = tuid + "_frame";
         var basicltiSettingsPreviewFrame = "#" + basicltiSettingsPreviewId;
-        var basicltiSettingsLtiKey = basicltiSettings + "_ltikey";
-        var basicltiSettingsLtiSecret = basicltiSettings + "_ltisecret";
 
         // Containers
         var basicltiMainContainer = basiclti + "_main_container";
@@ -76,55 +74,6 @@ require(["jquery", "sakai/sakai.api.core", "sakai/sakai.api.widgets"], function(
         ///////////////////////
         // Utility functions //
         ///////////////////////
-
-        /**
-         * Check if the value is a decimal or not
-         * @param {Object} value Value that needs to be checked
-         * @return {Boolean}
-         *     true: is a decimal
-         *     false: is not a decimal
-         */
-        var isDecimal = function(value){
-            return (/^\d+$/).test(value);
-        };
-
-        /**
-         * Check if the input url is in fact an url or not
-         * @param {String} url Url that needs to be tested
-         * @return {Boolean}
-         *     true: is an url
-         *     false: is not an url
-         */
-        var isUrl = function(url){
-            var matches = urlRegExp.exec(url);
-            // e.g. if("http:" && "localhost")
-            if(matches[1] && matches[4]) {
-                return true;
-            } else {
-                return false;
-            }
-        };
-
-        /**
-         * Check to see if both URLs are in the same origin. See: http://en.wikipedia.org/wiki/Same_origin_policy.
-         * @param {String} url1
-         * @param {String} url2
-         * @return {Boolean}
-         *     true: in the same origin policy
-         *     false: NOT in the same origin policy
-         */
-        var isSameOriginPolicy = function(url1, url2){
-            if(url1 == url2) {
-                return true;
-            }
-            // i.e. protocol, domain (and optional port numbers) must match
-            if((urlRegExp.exec(url1)[2] == urlRegExp.exec(url2)[2]) &&
-               (urlRegExp.exec(url1)[4] == urlRegExp.exec(url2)[4])){
-                return true;
-            } else {
-                return false;
-            }
-        };
 
         /**
          * Called when the data has been saved to the JCR.
@@ -148,12 +97,9 @@ require(["jquery", "sakai/sakai.api.core", "sakai/sakai.api.widgets"], function(
                 json.launchDataUrl = sakaiWidgetsAPI.widgetLoader.widgets[tuid].placement + ".launch.html";
                 $("#" + json.tuidFrame).attr("src", json.launchDataUrl);
 
-                // resize the iframe to match inner body height if in the same origin (i.e. same protocol/domain/port)
-                if(isSameOriginPolicy(window.location.href, json.ltiurl)) {
-                    $(basicltiSettingsPreviewFrame).load(function() {
-                        $(this).height($(this).contents().find("body").height() + 15); // add 10px for IE and 5px more for Gradebook weirdness
-                    });
-                }
+                $(basicltiSettingsPreviewFrame).load(function() {
+                    $(this).height($(this).contents().find("body").height() + 15); // add 10px for IE and 5px more for Gradebook weirdness
+                });
 
                 // SAKIII-314 We need to show the container, otherwise the second item won't be shown.
                 $(basicltiMainContainer, rootel).show();
@@ -215,20 +161,6 @@ require(["jquery", "sakai/sakai.api.core", "sakai/sakai.api.widgets"], function(
             json["lti_virtual_tool_id"] = "sakai.gradebook.gwt.rpc";
             json[":operation"] = "basiclti";
             json["sling:resourceType"] = "sakai/basiclti";
-            json.ltikey = $(basicltiSettingsLtiKey).val() || "";
-            json.ltisecret = $(basicltiSettingsLtiSecret).val() || "";
-            json["debug@TypeHint"] = "Boolean";
-            json.debug = $('#basiclti_settings_debug:checked').val() !== null;
-            json["release_names@TypeHint"] = "Boolean";
-            json.release_names = $('#basiclti_settings_release_names:checked').val() !== null;
-            json["release_principal_name@TypeHint"] = "Boolean";
-            json.release_principal_name = $('#basiclti_settings_release_principal_name:checked').val() !== null;
-            json["release_email@TypeHint"] = "Boolean";
-            json.release_email = $('#basiclti_settings_release_email:checked').val() !== null;
-            json.launchDataUrl = ""; // does not need to be persisted
-            json.tuidFrame = ""; // does not need to be persisted
-            json.defined = ""; // what the heck is this? Where does it come from?
-            json._MODIFIERS = null; // trimpath garbage - probably need a more selective way of saving data
 
             saveContentAjax(json);
         };
@@ -268,12 +200,6 @@ require(["jquery", "sakai/sakai.api.core", "sakai/sakai.api.widgets"], function(
             }
             else { // use default values
                 json = {
-                    ltiurl: "",
-                    ltikey: "",
-                    ltisecret: "",
-                    release_names: true,
-                    release_principal_name: true,
-                    release_email: true,
                     border_size: 0,
                     border_color: "cccccc",
                     frame_height: defaultHeight,
