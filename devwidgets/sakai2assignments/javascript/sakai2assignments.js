@@ -141,7 +141,7 @@ require(["jquery", "sakai/sakai.api.core", "sakai/sakai.api.widgets"], function(
          */
         var saveRemoteContent = function(){
             var  saveContentAjax = function(json_data) {
-                var url = sakaiWidgetsAPI.widgetLoader.widgets[tuid].placement;
+                var url = sakaiWidgetsAPI.widgetLoader.widgets[tuid].placement + '.json';
                 $.ajax({
                     type: "POST",
                     url: url,
