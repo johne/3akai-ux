@@ -92,6 +92,7 @@ require(["jquery", "sakai/sakai.api.core", "sakai/sakai.api.widgets"], function(
          */
         var renderIframe = function(){
             if (json) {
+                json.frame_height = 800;
                 json.tuidFrame = basicltiSettingsPreviewId;
                 $(basicltiMainContainer, rootel).html(sakai.api.Util.TemplateRenderer($basicltiSettingsPreviewTemplate, json));
                 json.launchDataUrl = sakaiWidgetsAPI.widgetLoader.widgets[tuid].placement + ".launch.html";
