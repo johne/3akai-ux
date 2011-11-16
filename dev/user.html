@@ -4,6 +4,7 @@
     <head>
 
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <title></title>
 
         <!-- Sakai Core CSS -->
@@ -58,10 +59,10 @@
           var feedback_widget_options = {};
           feedback_widget_options.display = "overlay";
           feedback_widget_options.company = "rsmart";
-          feedback_widget_options.placement = "bottom";
+          feedback_widget_options.placement = "hidden";
           feedback_widget_options.color = "#AFBC36";
           feedback_widget_options.style = "question";
-          feedback_widget_options.product = "rsmart_test_product";
+          feedback_widget_options.product = "rsmart_rsmart_academic";
           feedback_widget_options.limit = "5";
           var feedback_widget = new GSFN.feedback_widget(feedback_widget_options);
           require(
@@ -73,7 +74,7 @@
               }
           );
           require(["jquery"], function($) {
-              $("#fdbk_tab").live("click", function(e) {
+              $("#help_tab").live("click", function(e) {
                   feedback_widget.show();
                   e.preventDefault();
               });
