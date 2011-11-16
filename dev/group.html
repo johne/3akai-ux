@@ -75,7 +75,7 @@
           var feedback_widget_options = {};
           feedback_widget_options.display = "overlay";
           feedback_widget_options.company = "rsmart";
-          feedback_widget_options.placement = "bottom";
+          feedback_widget_options.placement = "hidden";
           feedback_widget_options.color = "#AFBC36";
           feedback_widget_options.style = "question";
           feedback_widget_options.product = "rsmart_rsmart_academic";
@@ -90,7 +90,7 @@
               }
           );
           require(["jquery"], function($) {
-              $("#fdbk_tab").live("click", function(e) {
+              $("#help_tab").live("click", function(e) {
                   feedback_widget.show();
                   e.preventDefault();
               });
