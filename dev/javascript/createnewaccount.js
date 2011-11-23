@@ -81,6 +81,7 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
         ///////////////////////
 
         var usernameEntered = "";
+        var emailEntered = "";
 
         /**
          * Get all of the values out of the form fields. This will return
@@ -205,29 +206,19 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
             });
         };
 
-        //////////////////////////////
-        // Check username existence //
-        //////////////////////////////
 
-        /*
-         * Check whether the username (eid) is valid and then check
-         * whether the username already exists in the system.
-         * checkingOnly will define whether we are just checking the existence,
-         * and don't want to do anything else afterwards if set to true. If set
-         * to false, it will start doing the actual creation of the user once
-         * the check has been completed.
-         */
-        var checkUserName = function(checkingOnly, callback){
-            var values = getFormValues();
+		/*
+		 * check the url for a 200 type return, return false if you get it
+		 */
+		var checkExistence = function(url, checkingOnly, callback) {
             var ret = false;
             var async = false;
             if (callback){
                 async = true;
             }
-            // If we reach this point, we have a username in a valid format. We then go and check
+            // If we reach this point, we have the field in a valid format. We then go and check
             // on the server whether this eid is already taken or not. We expect a 200 if it already
             // exists and a 401 if it doesn't exist yet.
-            var url = sakai.config.URL.USER_EXISTENCE_SERVICE.replace(/__USERID__/g, values.username);
             if (errObj.length === 0) {
                 $.ajax({
                     // Replace the preliminary parameter in the service URL by the real username entered
@@ -254,7 +245,33 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
                 });
             }
             return ret;
+		}
+
+        //////////////////////////////
+        // Check username existence //
+        //////////////////////////////
+
+        /*
+         * Check whether the username (eid) is valid and then check
+         * whether the username already exists in the system.
+         * checkingOnly will define whether we are just checking the existence,
+         * and don't want to do anything else afterwards if set to true. If set
+         * to false, it will start doing the actual creation of the user once
+         * the check has been completed.
+         */
+        var checkUserName = function(checkingOnly, callback){
+            var values = getFormValues();
+            var url = sakai.config.URL.USER_EXISTENCE_SERVICE.replace(/__USERID__/g, values.username);
+
+			return checkExistence(url, checkingOnly, callback);
         };
+
+		var checkEmailAddress = function(checkingOnly, callback) {
+            var values = getFormValues();
+            var url = sakai.config.URL.USER_EMAIL_EXISTENCE_SERVICE.replace(/__EMAIL__/g, values.email);
+			
+			return checkExistence(url, checkingOnly, callback);
+		}
 
         var initCaptcha = function(){
             sakai.api.Widgets.widgetLoader.insertWidgets("captcha_box", false);
@@ -315,6 +332,10 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
                 return this.optional(element) || (checkUserName());
             }, "* This username is already taken.");
 
+            $.validator.addMethod("validemail", function(value, element){
+                return this.optional(element) || (checkEmailAddress());
+            }, "* This email is already taken.");
+
             $.validator.addMethod("passwordmatch", function(value, element){
                 return this.optional(element) || (value === $(passwordField).val());
             }, "* The passwords do not match.");
@@ -335,6 +356,10 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
                         minlength: 3,
                         nospaces: true,
                         validusername: true
+                    },
+                    email: {
+                        email: true,
+                        validemail: true
                     },
                     role: {
                         minlength: 1,
@@ -384,6 +409,9 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
                     $(element).prev().text(error.text());
                     $(element).prev().show();
                     if(element[0].id == "username"){
+                        $(element).removeClass("username_available_icon");
+                    }
+                    if(element[0].id == "email"){
                         $(element).removeClass("username_available_icon");
                     }
                 }
