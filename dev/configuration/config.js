@@ -343,7 +343,7 @@ define(function(){
                                 "errorMessage": "__MSG__PROFILE_BASIC_EMAIL_ERROR__",
                                 "required": true,
                                 "display": true,
-                                "type": "email"
+                                "type": "email unique_email"
                             },
                             "status": {
                                 "label": "__MSG__PROFILE_BASIC_STATUS_LABEL__",
