@@ -313,69 +313,47 @@ define(function(){
                         "permission": "anonymous",
                         "order": 0,
                         "elements": {
-                            "firstName": {
+                            "picture": {
+                                "label": "__MSG__PROFILE_BASIC_PICTURE_LABEL__",
+                                "required": false,
+                                "display": false
+                            },
+                            "nameGiven": {
                                 "label": "__MSG__PROFILE_BASIC_FIRSTNAME_LABEL__",
                                 "errorMessage": "__MSG__PROFILE_BASIC_FIRSTNAME_ERROR__",
                                 "required": true,
                                 "display": true,
                                 "limitDisplayLength": 50
                             },
-                            "lastName": {
+                            "namePreferred": {
+                                "label": "__MSG__PROFILE_BASIC_PREFERREDNAME_LABEL__",
+                                "required": false,
+                                "display": true,
+                                "limitDisplayLength": 50
+                            },
+                            "nameFamily": {
                                 "label": "__MSG__PROFILE_BASIC_LASTNAME_LABEL__",
                                 "errorMessage": "__MSG__PROFILE_BASIC_LASTNAME_ERROR__",
                                 "required": true,
                                 "display": true,
                                 "limitDisplayLength": 50
                             },
-                            "picture": {
-                                "label": "__MSG__PROFILE_BASIC_PICTURE_LABEL__",
-                                "required": false,
-                                "display": false
-                            },
-                            "preferredName": {
-                                "label": "__MSG__PROFILE_BASIC_PREFERREDNAME_LABEL__",
-                                "required": false,
-                                "display": true
-                            },
-                            "email": {
-                                "label": "__MSG__PROFILE_BASIC_EMAIL_LABEL__",
-                                "errorMessage": "__MSG__PROFILE_BASIC_EMAIL_ERROR__",
-                                "required": true,
-                                "display": true,
-                                "type": "email"
-                            },
                             "status": {
                                 "label": "__MSG__PROFILE_BASIC_STATUS_LABEL__",
                                 "required": false,
                                 "display": false
-                            },
-                            "role": {
-                                "label": "__MSG__PROFILE_BASIC_ROLE_LABEL__",
-                                "required": false,
-                                "display": true,
-                                "type": "select",
-                                "select_elements": {
-                                    "academic_related_staff": "__MSG__PROFILE_BASIC_ROLE_ACADEMIC_RELATED_STAFF_LABEL__",
-                                    "academic_staff": "__MSG__PROFILE_BASIC_ROLE_ACADEMIC_STAFF_LABEL__",
-                                    "assistent_staff": "__MSG__PROFILE_BASIC_ROLE_ASSISTENT_STAFF_LABEL__",
-                                    "graduate_student": "__MSG__PROFILE_BASIC_ROLE_GRADUATE_STUDENT_LABEL__",
-                                    "undergraduate_student": "__MSG__PROFILE_BASIC_ROLE_UNDERGRADUATE_STUDENT_LABEL__",
-                                    "non_academic_staff": "__MSG__PROFILE_BASIC_ROLE_NON_ACADEMIC_STAFF_LABEL__",
-                                    "postgraduate_student": "__MSG__PROFILE_BASIC_ROLE_POSTGRADUATE_STUDENT_LABEL__",
-                                    "research_staff": "__MSG__PROFILE_BASIC_ROLE_RESEARCH_STAFF_LABEL__",
-                                    "other": "__MSG__PROFILE_BASIC_ROLE_OTHER_LABEL__"
-                                }
-                            },
-                            "department": {
-                                "label": "__MSG__PROFILE_BASIC_DEPARTMENT_LABEL__",
-                                "required": false,
-                                "display": true
-                            },
-                            "college": {
-                                "label": "__MSG__PROFILE_BASIC_COLLEGE_LABEL__",
-                                "required": false,
-                                "display": true
-                            },
+                            }
+                        }
+                    },
+                    "tags": {
+                        "label": "__MSG__PROFILE_TAGS_LABEL__",
+                        "required": false,
+                        "display": true,
+                        "access": "anonymous",
+                        "modifyacl": true,
+                        "permission": "anonymous",
+                        "order": 1,
+                        "elements": {
                             "tags": {
                                 "label": "__MSG__TAGS__",
                                 "required": false,
@@ -412,11 +390,33 @@ define(function(){
                                 "display": true,
                                 "type": "textarea"
                             },
-                            "hobbies": {
-                                "label": "__MSG__PROFILE_ABOUTME_HOBBIES_LABEL__",
-                                "required": false,
-                                "display": true
+                        }
+                    },
+                    "locationHome": {
+                        "label": "__MSG__PROFILE_LOCATIONS_LABEL__",
+                        "required": false,
+                        "display": true,
+                        "access": "everybody",
+                        "modifyacl": true,
+                        "permission": "anonymous",
+                        "multiple": true,
+                        "directory": true,
+                        "multipleLabel": "__MSG__PROFILE_LOCATION_LABEL__",
+                        "order": 2,
+                        "elements": {
+                            "locationtitle": {
+                                "label": "__MSG__PROFILE_LOCATION_LABEL__",
+                                "required": true,
+                                "display": true,
+                                "type": "location"
                             }
+                            "emailma": {
+                                "label": "__MSG__PROFILE_BASIC_EMAIL_LABEL__",
+                                "errorMessage": "__MSG__PROFILE_BASIC_EMAIL_ERROR__",
+                                "required": true,
+                                "display": true,
+                                "type": "email"
+                            },y'a
                         }
                     },
                     "locations": {
