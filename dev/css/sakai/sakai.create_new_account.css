@@ -56,7 +56,7 @@ label.signup_form_error_label{margin-top:25px !important;}
 .create_account_input_error {background:#F9D679;color:#8B6B0A;font-size:11px;padding:4px 0 2px 10px;width:206px;clear:both;}
 
 .captcha_container #save_account {float:right;margin-top:74px;}
-.captcha_container {clear:both;margin-left:148px;width:580px;}
+.captcha_container {clear:both;margin:20px 0 0 20px;width:580px;}
 
 .signup_comment_box {background:url("/dev/images/signup_commentbox_bg.png") repeat top left transparent;width:290px;height:205px;margin-top:20px;float:left;margin-right:25px;border-radius:6px;-moz-border-radius:6px;-webkit-border-radius:6px;margin-bottom:85px;}
 .signup_comment_box.last {margin-right:0;}
@@ -73,5 +73,6 @@ label.signup_form_error_label{margin-top:25px !important;}
 
 /* Override CSS */
 .s3d-page-header {height:0;margin-top:15px;min-height:0;}
-.recaptchatable {background:#FFF;float:left;}
+.recaptchatable {background:#FFF;}
 .recaptchatable input {border:1px solid #E0E1E2 !important;}
+#save_account {margin:20px;}
