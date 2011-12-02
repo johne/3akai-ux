@@ -1,6 +1,39 @@
 rSmart 3akai-ux Changelog
 =========================
 
+acad-1.0.2-M3-20111202
+----------------------
+
+* NOJIRA rev version number for release f3f2ea6
+* ACAD-138: restrucutre user profiles for sense/privacy 7077f4a
+* ACAD-45 s/rSmart LL/rSmart Academic/ b38c05a
+* ACAD-45 Change Sakai Goodies -> rSmart LL Goodies. 9b19f9f
+* ACAD-45 Convert more Sakai references to rSmart. 829ac09
+* ACAD-45 Change Sakai OAE to rSmart LL. This change text in the browser title and welcome screen. 3e3c28f
+* ACAD-242 Assignments LTI widget does not launch 2cc527b
+* ACAD-167 added link to reset password stuff (cherry picked from commit f5605071b16e5a1bdba82e27ba61d138c90d189b) 2970bed
+* fixing EOL 80d1f69
+* completed alignment of user reg page to rSmart branding for ACAD-57" 322ff70
+* fixing EOL cee2426
+* first attempt at reworking profile structure 18a0716
+* start of work on ACAD-57 to match user reg to rSmart branding dec767d
+
+acad-1.0.2-M2-20111116
+----------------------
+
+* NOJIRA change version number for tag acad-1.0.2-M2-20111116 ee6fbcb
+* fixing EOL issue 9a75e6c
+* painting custom Help button in top toolbar leading to GetSat 5fe08f2
+* fixing EOL issues once and for all 92ce6b4
+* fixing EOL issues 88cb9a1
+* ACAD-168 imported changes to Ui to support move of tagging to sparse ddb5b9f
+* fixes for ACAD-46: ensuring system emails refer to global PLATFORM_SHORT var eb99d85
+* SAKIII-4216 - OAE doesn't work in compatibility mode (cherry picked from commit c380c5449d182d4d5c06188f0eda31efe0d234d3) d8109d6
+* ACAD-110 Switch GetSatisfaction over to REAL GS product (i.e. not test product) 59b44ae
+* SAKIII-4206 - Fixing missing space (cherry picked from commit 54004edf8b5e76f9633345609f906c7159d5e3be) fee39d7
+* SAKIII-4206 - Math equations don't render in the discussion widget (cherry picked from commit 983d5aecca855e6652287402acf113b08844401e) a2
+* NOJIRA Added CHANGELOG 23639cb
+
 acad-1.0.2-M1-20111024
 ----------------------
 
