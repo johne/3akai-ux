@@ -313,47 +313,42 @@ define(function(){
                         "permission": "anonymous",
                         "order": 0,
                         "elements": {
-                            "picture": {
-                                "label": "__MSG__PROFILE_BASIC_PICTURE_LABEL__",
-                                "required": false,
-                                "display": false
-                            },
-                            "nameGiven": {
+                            "firstName": {
                                 "label": "__MSG__PROFILE_BASIC_FIRSTNAME_LABEL__",
                                 "errorMessage": "__MSG__PROFILE_BASIC_FIRSTNAME_ERROR__",
                                 "required": true,
                                 "display": true,
                                 "limitDisplayLength": 50
                             },
-                            "namePreferred": {
-                                "label": "__MSG__PROFILE_BASIC_PREFERREDNAME_LABEL__",
-                                "required": false,
-                                "display": true,
-                                "limitDisplayLength": 50
-                            },
-                            "nameFamily": {
+                            "lastName": {
                                 "label": "__MSG__PROFILE_BASIC_LASTNAME_LABEL__",
                                 "errorMessage": "__MSG__PROFILE_BASIC_LASTNAME_ERROR__",
                                 "required": true,
                                 "display": true,
                                 "limitDisplayLength": 50
                             },
+                            "picture": {
+                                "label": "__MSG__PROFILE_BASIC_PICTURE_LABEL__",
+                                "required": false,
+                                "display": false
+                            },
+                            "preferredName": {
+                                "label": "__MSG__PROFILE_BASIC_PREFERREDNAME_LABEL__",
+                                "required": false,
+                                "display": true
+                            },
+                            "email": {
+                                "label": "__MSG__PROFILE_BASIC_EMAIL_LABEL__",
+                                "errorMessage": "__MSG__PROFILE_BASIC_EMAIL_ERROR__",
+                                "required": true,
+                                "display": false,
+                                "type": "email"
+                            },
                             "status": {
                                 "label": "__MSG__PROFILE_BASIC_STATUS_LABEL__",
                                 "required": false,
                                 "display": false
-                            }
-                        }
-                    },
-                    "tags": {
-                        "label": "__MSG__PROFILE_TAGS_LABEL__",
-                        "required": false,
-                        "display": true,
-                        "access": "anonymous",
-                        "modifyacl": true,
-                        "permission": "anonymous",
-                        "order": 1,
-                        "elements": {
+                            },
                             "tags": {
                                 "label": "__MSG__TAGS__",
                                 "required": false,
@@ -363,14 +358,34 @@ define(function(){
                             }
                         }
                     },
-                    "aboutme": {
-                        "label": "__MSG__PROFILE_ABOUTME_LABEL__",
-                        "required": true,
+                    "locations": {
+                        "label": "__MSG__PROFILE_LOCATIONS_LABEL__",
+                        "required": false,
                         "display": true,
                         "access": "everybody",
                         "modifyacl": true,
                         "permission": "anonymous",
+                        "multiple": true,
+                        "directory": true,
+                        "multipleLabel": "__MSG__PROFILE_LOCATION_LABEL__",
                         "order": 1,
+                        "elements": {
+                            "locationtitle": {
+                                "label": "__MSG__PROFILE_LOCATION_LABEL__",
+                                "required": true,
+                                "display": true,
+                                "type": "location"
+                            }
+                        }
+                    },
+                    "aboutme": {
+                        "label": "__MSG__PROFILE_ABOUTME_LABEL__",
+                        "required": true,
+                        "display": true,
+                        "access": "onlyme",
+                        "modifyacl": true,
+                        "permission": "private",
+                        "order": 2,
                         "elements": {
                             "aboutme": {
                                 "label": "__MSG__PROFILE_ABOUTME_LABEL__",
@@ -389,53 +404,111 @@ define(function(){
                                 "required": false,
                                 "display": true,
                                 "type": "textarea"
-                            },
+                            }
                         }
                     },
-                    "locationHome": {
-                        "label": "__MSG__PROFILE_LOCATIONS_LABEL__",
+                    "online": {
+                        "label": "__MSG__PROFILE_ONLINE_LABEL__",
                         "required": false,
                         "display": true,
-                        "access": "everybody",
+                        "access": "onlyme",
                         "modifyacl": true,
-                        "permission": "anonymous",
+                        "permission": "private",
                         "multiple": true,
-                        "directory": true,
-                        "multipleLabel": "__MSG__PROFILE_LOCATION_LABEL__",
-                        "order": 2,
+                        "multipleLabel": "__MSG__PROFILE_ONLINE_LABEL__",
+                        "order": 3,
                         "elements": {
-                            "locationtitle": {
-                                "label": "__MSG__PROFILE_LOCATION_LABEL__",
+                            "siteOnline": {
+                                "label": "__MSG__PROFILE_ONLINE_SITE_LABEL__",
+                                "errorMessage": "__MSG__PROFILE_ONLINE_SITE_ERROR__",
                                 "required": true,
                                 "display": true,
-                                "type": "location"
-                            }
-                            "emailma": {
-                                "label": "__MSG__PROFILE_BASIC_EMAIL_LABEL__",
-                                "errorMessage": "__MSG__PROFILE_BASIC_EMAIL_ERROR__",
+                                "example": "__MSG__PROFILE_ONLINE_SITE_EXAMPLE__"
+                            },
+                            "urlOnline": {
+                                "label": "__MSG__PROFILE_ONLINE_URL_LABEL__",
+                                "errorMessage": "__MSG__PROFILE_ONLINE_URL_ERROR__",
                                 "required": true,
+                                "display": true,
+                                "example": "__MSG__PROFILE_ONLINE_URL_EXAMPLE__"
+                            }
+                        }
+                    },
+                    "contact": {
+                        "label": "__MSG__PROFILE_CONTACT_LABEL__",
+                        "required": false,
+                        "display": true,
+                        "access": "onlyme",
+                        "modifyacl": true,
+                        "permission": "private",
+                        "order": 4,
+                        "elements": {
+                            "college": {
+                                "label": "__MSG__PROFILE_BASIC_COLLEGE_LABEL__",
+                                "required": false,
+                                "display": true
+                            },
+                            "department": {
+                                "label": "__MSG__PROFILE_BASIC_DEPARTMENT_LABEL__",
+                                "required": false,
+                                "display": true
+                            },
+                            "role": {
+                                "label": "__MSG__PROFILE_BASIC_ROLE_LABEL__",
+                                "required": false,
+                                "display": true
+                            },
+                            "emailContact": {
+                                "label": "__MSG__PROFILE_CONTACT_EMAIL_LABEL__",
+                                "errorMessage": "__MSG__PROFILE_CONTACT_EMAIL_ERROR__",
+                                "required": false,
                                 "display": true,
                                 "type": "email"
-                            },y'a
-                        }
-                    },
-                    "locations": {
-                        "label": "__MSG__PROFILE_LOCATIONS_LABEL__",
-                        "required": false,
-                        "display": true,
-                        "access": "everybody",
-                        "modifyacl": true,
-                        "permission": "anonymous",
-                        "multiple": true,
-                        "directory": true,
-                        "multipleLabel": "__MSG__PROFILE_LOCATION_LABEL__",
-                        "order": 2,
-                        "elements": {
-                            "locationtitle": {
-                                "label": "__MSG__PROFILE_LOCATION_LABEL__",
-                                "required": true,
-                                "display": true,
-                                "type": "location"
+                            },
+                            "imContact": {
+                                "label": "__MSG__PROFILE_CONTACT_IM_LABEL__",
+                                "required": false,
+                                "display": true
+                            },
+                            "phoneContact": {
+                                "label": "__MSG__PROFILE_CONTACT_PHONE_LABEL__",
+                                "required": false,
+                                "display": true
+                            },
+                            "mobileContact": {
+                                "label": "__MSG__PROFILE_CONTACT_MOBILE_LABEL__",
+                                "required": false,
+                                "display": true
+                            },
+                            "faxContact": {
+                                "label": "__MSG__PROFILE_CONTACT_FAX_LABEL__",
+                                "required": false,
+                                "display": true
+                            },
+                            "addressContact": {
+                                "label": "__MSG__PROFILE_CONTACT_ADDRESS_LABEL__",
+                                "required": false,
+                                "display": true
+                            },
+                            "cityContact": {
+                                "label": "__MSG__PROFILE_CONTACT_CITY_LABEL__",
+                                "required": false,
+                                "display": true
+                            },
+                            "stateContact": {
+                                "label": "__MSG__PROFILE_CONTACT_STATE_LABEL__",
+                                "required": false,
+                                "display": true
+                            },
+                            "postalContact": {
+                                "label": "__MSG__PROFILE_CONTACT_POSTAL_LABEL__",
+                                "required": false,
+                                "display": true
+                            },
+                            "countryContact": {
+                                "label": "__MSG__PROFILE_CONTACT_COUNTRY_LABEL__",
+                                "required": false,
+                                "display": true
                             }
                         }
                     },
@@ -443,12 +516,12 @@ define(function(){
                         "label": "__MSG__PROFILE_PUBLICATIONS_LABEL__",
                         "required": false,
                         "display": true,
-                        "access": "everybody",
+                        "access": "onlyme",
                         "modifyacl": true,
-                        "permission": "anonymous",
+                        "permission": "private",
                         "multiple": true,
                         "multipleLabel": "__MSG__PROFILE_PUBLICATION_LABEL__",
-                        "order": 3,
+                        "order": 5,
                         //"template": "profile_section_publications_template",
                         "elements": {
                             "maintitle": {
