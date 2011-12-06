@@ -468,8 +468,8 @@ require(["jquery", "sakai/sakai.api.core", "/dev/lib/jquery/plugins/imgareaselec
 
             // The parameters for the cropit service.
             var data = {
-                img: "/~" + sakai.api.Util.safeURL(id) + "/public/profile/" + picture._name,
-                save: "/~" + sakai.api.Util.safeURL(id) + "/public/profile",
+                img: "/~" + id + "/public/profile/" + picture._name,
+                save: "/~" + id + "/public/profile",
                 x: Math.floor(userSelection.x1 * ratio),
                 y: Math.floor(userSelection.y1 * ratio),
                 width: Math.floor(userSelection.width * ratio),
