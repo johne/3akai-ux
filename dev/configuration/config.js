@@ -1815,7 +1815,7 @@ define(function(){
                     "_altTitle": "${user}'s Memberships",
                     "_reorderOnly": true,
                     "_nonEditable": true,
-                    "_view": "anonymous",
+                    "_view": "contacts",
                     "main": {
                         "_ref": "${refid}1",
                         "_order": 0,
@@ -1829,7 +1829,7 @@ define(function(){
                     "_altTitle": "${user}'s Contacts",
                     "_reorderOnly": true,
                     "_nonEditable": true,
-                    "_view": "anonymous",
+                    "_view": "contacts",
                     "main": {
                         "_ref": "${refid}2",
                         "_order": 0,
