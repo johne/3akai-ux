@@ -200,6 +200,36 @@
     {/if}
 --></div>
 
+<div id="profilesection_field_email_template"><!--
+    {var mode = sakai_global.profile.main.mode}
+    {var stringtypes = ["email"]}
+    {var mode = sakai_global.profile.main.mode}
+    {var stringtypes = ["string", "date", "email", "oldDate"]}
+    {if mode.value === "edit"}
+        {if data && config}
+        	<div class="profilesection_generalinfo_subcontainer">
+	            {if !config.nolabel}
+	                <label class="profilesection_generalinfo_label" for="profilesection_generalinfo_${path.replace(/\./g,"_")}">${config.label}:</label>
+	            {/if}
+				{if config.editable === false || !sakai.data.me.user.properties.emailverified}
+                    <span class="profilesection_generalinfo_content" id="profilesection_generalinfo_${path.replace(/\./g,"_")}">${data.value}</span>
+					{if !sakai.data.me.user.properties.emailverified}
+					<span>&nbsp;</span>
+		            <a class="emailverify_pop_verify_warning s3d-action"><span>__MSG__EMAIL_VERIFY_VERYIFY_POP_BUTTON__</span></button>
+					{/if}
+				{else}
+                	<input type="text"
+                    class="profilesection_generalinfo_content{if config.required} required{/if}{if config.validation} ${config.validation}{elseif config.type} ${config.type}{/if}"
+                    value="{if data.value}${data.value.replace(/\"/g, "&quot;")}{/if}"
+                    id="profilesection_generalinfo_${path.replace(/\./g,"_")}" name="${path.replace(/\./g,"_")}" title="${config.label}"
+					/>
+				{/if}
+            </div>
+		{/if}
+	{/if}
+--></div>
+
+
 <!-- ERROR CONTAINER -->
 <div id="profile_error" style="display:none;">
     <div id="profile_error_form_errors">__MSG__SOME_FIELDS_CONTAIN_ERRORS_PLEASE_CHECK_AGAIN__</div>

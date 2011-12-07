@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations under the License.
  */
 define(function(){
+	
     var config = {
         URL: {
             // Static URLs
