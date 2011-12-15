@@ -135,7 +135,8 @@ define(function(){
             TWITTER_POST_URL: "/var/proxy/twitter/update_status.json",
             USER_CHANGELOCALE_SERVICE: "/rest/user/changelocale/__USERID__",
             USER_CHANGEPASS_SERVICE: "/system/userManager/user/__USERID__.changePassword.html",
-            USER_EXISTENCE_SERVICE: "/system/userManager/user.exists.html?userid=__USERID__"
+            USER_EXISTENCE_SERVICE: "/system/userManager/user.exists.html?userid=__USERID__",
+            USER_EMAIL_EXISTENCE_SERVICE: "/system/userManager/user.emailexists.html?email=__EMAIL__"
         },
 
         PageTitles: {
