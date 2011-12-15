@@ -1,6 +1,11 @@
 rSmart 3akai-ux Changelog
 =========================
 
+acad-1.0.2-M5-20111215
+----------------------
+
+* ACAD-56 corrected setting of height for frame; previous fix relied on timing of rendering versus timing of javascript call 7c4bfa2\
+
 acad-1.0.2-M4-20111208
 ----------------------
 
