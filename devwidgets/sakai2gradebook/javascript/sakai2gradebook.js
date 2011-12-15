@@ -99,7 +99,9 @@ require(["jquery", "sakai/sakai.api.core", "sakai/sakai.api.widgets"], function(
                 $("#" + json.tuidFrame).attr("src", json.launchDataUrl);
 
                 $(basicltiSettingsPreviewFrame).load(function() {
-                    $(this).height($(this).contents().find("body").height() + 15); // add 10px for IE and 5px more for Gradebook weirdness
+                    calculatedHeight = $(this).contents.find("body").height() + 15;
+
+                    $(this).height(json.frame_height > calculatedHeight ? json.frame_height : calculatedHeight);
                 });
 
                 // SAKIII-314 We need to show the container, otherwise the second item won't be shown.
