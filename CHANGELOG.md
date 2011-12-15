@@ -1,6 +1,16 @@
 rSmart 3akai-ux Changelog
 =========================
 
+acad-1.0.2-M4-20111208
+----------------------
+
+* ACAD-137 & ACAD-141 changes to reflect rSmart branding 07c9852
+* ACAD-260: block public access to user world memberships & contacts d04f57f
+* ACAD-257: making all user profile areas public by default e9fc232
+* ACAD-269 fixed path to images by preventing URL encoding where it is not necessary c02a109
+* SAKIII-4417 Make all iframes the same size when embedding them in a document, for internal and external HTMl files (cherry picked from com
+* SAKIII-4417 Make all iframes the same size when embedding them in a document, for internal and external HTMl files 631b0bf
+
 acad-1.0.2-M3-20111202
 ----------------------
 
