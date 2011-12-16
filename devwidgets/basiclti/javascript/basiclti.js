@@ -271,7 +271,8 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai) {
                 json.ltikey = $(basicltiSettingsLtiKey,rootel).val() || "";
                 json.ltisecret = $(basicltiSettingsLtiSecret,rootel).val() || "";
                 json["debug@TypeHint"] = "Boolean";
-                json.debug = $('#basiclti_settings_debug:checked',rootel).val() !== null;
+                dbg = $('#basiclti_settings_debug:checked',rootel).val();
+                json.debug = (undefined != dbg && dbg !== null);
                 json["release_names@TypeHint"] = "Boolean";
                 json.release_names = $('#basiclti_settings_release_names:checked',rootel).val() !== null;
                 json["release_principal_name@TypeHint"] = "Boolean";
@@ -292,7 +293,8 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai) {
                 json.ltikey = $(basicltiSettingsLtiKey,rootel).val() || "";
                 json.ltisecret = $(basicltiSettingsLtiSecret,rootel).val() || "";
                 json["debug@TypeHint"] = "Boolean";
-                json.debug = $('#basiclti_settings_debug:checked',rootel).val() !== null;
+                dbg = $('#basiclti_settings_debug:checked',rootel).val();
+                json.debug = (undefined != dbg && dbg !== null);
                 json["release_names@TypeHint"] = "Boolean";
                 json.release_names = $('#basiclti_settings_release_names:checked',rootel).val() !== null;
                 json["release_principal_name@TypeHint"] = "Boolean";
