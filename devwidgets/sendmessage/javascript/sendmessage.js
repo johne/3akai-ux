@@ -230,7 +230,6 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai) {
                         return line_item;
                     },
                     source: function(query, add) {
-                        var user = require("sakai/sakai.api.user");
                         var q = sakai.api.Server.createSearchString(query);
                         var searchoptions = {"page": 0, "items": 15};
                         /* Should investigate filtering this search to SEARCH_USERS_GROUPS_KNOWN */
@@ -244,9 +243,9 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai) {
                             if (success) {
                                 var suggestions = [];
                                 $.each(data.results, function(i) {
-                                    if (data.results[i]["rep:userId"] && data.results[i]["rep:userId"] !== user.data.me.user.userid) {
+                                    if (data.results[i]["rep:userId"] && data.results[i]["rep:userId"] !== sakai.api.User.data.me.user.userid) {
 //                                        if(!options.filterUsersGroups || $.inArray(data.results[i]["rep:userId"],options.filterUsersGroups)===-1){
-                                        	suggestions.push({"value": data.results[i]["rep:userId"], "name": user.getDisplayName(data.results[i]), "type": "user"});
+                                        	suggestions.push({"value": data.results[i]["rep:userId"], "name": sakai.api.User.getDisplayName(data.results[i]), "type": "user"});
 //                                    	}
                                     } else if (data.results[i]["sakai:group-id"]) {
 //                                        if(!options.filterUsersGroups || $.inArray(data.results[i]["sakai:group-id"],options.filterUsersGroups)===-1){
