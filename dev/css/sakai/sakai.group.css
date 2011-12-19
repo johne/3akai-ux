@@ -17,3 +17,10 @@
  */
 #group_create_new_area {margin-left: 12px; margin-top: 20px; margin-bottom: 10px;}
 #group_create_new_area span {color:#4b6b80; font-size: 10px;}
+
+.fl-container-flex .fl-fix.s3d-twocolumn{overflow:hidden;min-width:960px;}
+.s3d-container-shadow-right,.s3d-container-shadow-left{z-index:-1;}
+.s3d-page-column-right{padding-left:200px;width:100%;}
+.s3d-page-column-left{margin-left:-100%;border-right:1px solid #D6DADD;}
+.fl-container-flex .fl-fix.s3d-twocolumn .s3d-page-column-right, .fl-container-flex .fl-fix.s3d-twocolumn .s3d-page-column-left{padding-bottom:20010px;margin-bottom:-20000px;}
+.s3d-page-header{border-bottom:none;}
