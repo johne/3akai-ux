@@ -148,7 +148,7 @@ require(["jquery","sakai/sakai.api.core"], function($, sakai) {
                     var user = {};
                     user.userid = item["rep:userId"];
                     // Parse the user his info.
-                    user.path = item.homePath + "/public/";
+                    user.path = "/~" + item["rep:userId"] + "/public/";
                     var person = item;
                     if (person && person.basic && person.basic.elements && person.basic.elements.picture && $.parseJSON(person.basic.elements.picture.value).name){
                         person.picture = person.basic.elements.picture.value;

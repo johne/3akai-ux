@@ -767,7 +767,7 @@ define(
 
         getUpdatedCounts : function(medata, callback) {
             $.ajax({
-                url: medata.profile.homePath + "/public/authprofile.profile.json",
+                url: "/~" + medata.profile.user.userid + "/public/authprofile.profile.json",
                 success: function(profile){
                     medata.profile.counts = profile.counts;
                     if ($.isFunction(callback)){

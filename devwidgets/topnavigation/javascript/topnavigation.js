@@ -219,7 +219,7 @@ require(["jquery", "sakai/sakai.api.core", "jquery-plugins/jquery.fieldselection
                         var tempPerson = {
                             "dottedname": dottedName,
                             "name": sakai.api.User.getDisplayName(data.results[i]),
-                            "url": data.results[i].homePath
+                            "url": "/~" + data.results[i].userid
                         };
                         people.push(tempPerson);
                     }
@@ -238,7 +238,7 @@ require(["jquery", "sakai/sakai.api.core", "jquery-plugins/jquery.fieldselection
                         var tempGroup = {
                             "dottedname": sakai.api.Util.applyThreeDots(data.results[i]["sakai:group-title"], 100),
                             "name": data.results[i]["sakai:group-title"],
-                            "url": data.results[i].homePath
+                            "url": "/~" + data.results[i]["sakai:group-id"]
                         };
                         if (data.results[i]["sakai:group-visible"] == "members-only" || data.results[i]["sakai:group-visible"] == "logged-in-only") {
                             tempGroup["css_class"] = "topnavigation_group_private_icon";
