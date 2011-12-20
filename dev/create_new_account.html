@@ -57,6 +57,7 @@
                                         <label id="firstName_label" for="firstName" class="firstName required">__MSG__FIRSTNAME__:</label>
                                         <label id="lastName_label" for="lastName" class="lastName required">__MSG__LASTNAME__:</label>
                                         <label id="email_label" for="email" class="email required">__MSG__EMAIL__:</label>
+                                        <label id="email_confirm_label" for="emailConfirm" class="email required">__MSG__EMAIL_CONFIRM__:</label>
                                     </div>
                                     <div class="signup_form_column_fields">
                                         <div class="create_account_input_error" id="create_account_username_error" style="display:none;"><!----></div>
@@ -80,6 +81,8 @@
                                         <input type="text" maxlength="255" id="lastName" name="lastName" class="create_account_input required" placeholder="Sakai"/>
                                         <div class="create_account_input_error" style="display:none;"><!----></div>
                                         <input type="text" maxlength="255" id="email" name="email" class="create_account_input required email" placeholder="hiroyuki.sakai@example.com"/>
+                                        <div class="create_account_input_error" style="display:none;"><!----></div>
+                                        <input type="text" maxlength="255" id="emailConfirm" name="emailConfirm" class="create_account_input required" placeholder="hiroyuki.sakai@example.com"/>
                                     </div>
                                 </div>
                                 <div class="signup_form_column">
@@ -146,6 +149,8 @@
                     <div id="lastName_empty" style="display:none;">__MSG__PLEASE_ENTER_YOUR_LAST_NAME__</div>
                     <div id="email_empty" style="display:none;">__MSG__PLEASE_ENTER_A_VALID_EMAIL_ADDRESS__</div>
                     <div id="email_invalid" style="display:none;">__MSG__THIS_IS_AN_INVALID_EMAIL_ADDRESS__</div>
+                    <div id="email_not_unique" style="display:none;">__MSG__EMAIL_ADDRESS_ALREAD_TAKEN__</div>
+                    <div id="emails_must_match" style="display:none;">__MSG__EMAILS_MUST_MATCH__</div>
                     <div id="username_empty" style="display:none;">__MSG__PLEASE_ENTER_YOUR_USERNAME__</div>
                     <div id="username_short" style="display:none;">__MSG__THE_USERNAME_SHOULD_BE_AT_LEAST_THREE_CHARACTERS_LONG__</div>
                     <div id="username_spaces" style="display:none;">__MSG__THE_USERNAME_SHOULDNT_CONTAIN_SPACES__</div>
