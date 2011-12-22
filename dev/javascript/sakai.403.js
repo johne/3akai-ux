@@ -27,28 +27,38 @@ require(["jquery","sakai/sakai.api.core"], function($, sakai) {
         var $signinbuttonwrapper = $('#error_sign_in_button');
         var $signinbutton = $("button",$signinbuttonwrapper);
         var $browsecatcount = $("#error_browse_category_number");
+        var $browsecats = $(".browse_cats");
         var $secondcoltemplate = $("#error_second_column_links_template");
         var $errorsecondcolcontainer = $("#error_content_second_column_box_container");
         var $errorPageLinksTemplate = $("#error_page_links_template");
         var $errorPageLinksContainer = $("#error_page_links_container");
         var $searchinput = $("#errorsearch_text");
+        var $searchButton = $("#error_content .s3d-search-button");
+
+        var doSearch = function(){
+            document.location = "/search#q=" + $.trim($searchinput.val());
+        };
 
         var doInit = function(){
             var renderedTemplate = false;
-            var catcount = 0;
-            for (var i in sakai.config.Directory) {
-                if (sakai.config.Directory.hasOwnProperty(i)) {
-                    catcount+=1;
+            if (sakai.config.enableCategories) {
+                var catcount = 0;
+                for (var i in sakai.config.Directory) {
+                    if (sakai.config.Directory.hasOwnProperty(i) && !sakai.config.Directory[i].divider) {
+                        catcount+=1;
+                    }
                 }
+                $browsecatcount.text(catcount);
+            } else {
+                $browsecats.hide();
             }
-            $browsecatcount.text(catcount);
 
             // Create the world links in the second column after People, Content...
             var worlds = [];
             var obj = {};
             for (var c = 0; c < sakai.config.worldTemplates.length; c++){
                 var world = sakai.config.worldTemplates[c];
-                world.label = sakai.api.i18n.General.getValueForKey(world.title);
+                world.label = sakai.api.i18n.getValueForKey(world.titlePlural);
                 if(c===sakai.config.worldTemplates.length-1){
                 	world.last = true;
                 }
@@ -70,7 +80,6 @@ require(["jquery","sakai/sakai.api.core"], function($, sakai) {
                 });
 
                 $signinbuttonwrapper.show();
-                $signinbutton.live("click", forceLoginOverlay);
 
                 $('html').addClass("requireAnon");
                 // the user is anonymous and should be able to log in
@@ -87,6 +96,9 @@ require(["jquery","sakai/sakai.api.core"], function($, sakai) {
                 $(".login-container button").bind("click", function(){
                     document.location = (gatewayURL + "?url=" + escape(redurl));
                 });
+                if (sakai.config.Authentication.allowInternalAccountCreation){
+                    $("#error_sign_up").show();
+                }
             } else {
                 // Remove the sakai.index stylesheet as it would mess up the design
                 $("LINK[href*='/dev/css/sakai/sakai.index.css']").remove();
@@ -97,16 +109,12 @@ require(["jquery","sakai/sakai.api.core"], function($, sakai) {
             }
             $searchinput.live("keydown", function(ev){
                 if (ev.keyCode === 13) {
-                    document.location = "/search#q=" + $.trim($searchinput.val());
+                    doSearch();
                 }
             });
+            $searchButton.click(doSearch);
             sakai.api.Security.showPage();
-            document.title = document.title + " " + sakai.api.i18n.General.getValueForKey("ACCESS_DENIED");
-        };
-
-        var forceLoginOverlay = function(){
-            $("#topnavigation_user_options_login_fields").addClass("topnavigation_force_submenu_display");
-            $("#topnavigation_user_options_login_wrapper").addClass("topnavigation_force_submenu_display_title");
+            document.title = document.title + " " + sakai.api.i18n.getValueForKey("ACCESS_DENIED");
         };
 
         doInit();
