@@ -49,23 +49,14 @@
                                 <div id="signup_form_shadow"></div>
                                 <h1 class="signup_header">__MSG__CREATE_A_NEW_ACCOUNT__</h1>
                                 <div class="signup_form_column">
-                                    <div class="signup_form_column_labels">
-                                        <label id="username_label" class="username required" for="username">__MSG__USERNAME__:</label>
-                                        <label id="password_label" for="password" class="password required">__MSG__PASSWORD__:</label>
-                                        <label id="password_repeat_label" for="password_repeat" class="password_repeat required">__MSG__RE_TYPE_PASSWORD__:</label>
-                                        <label id="title_label" for="title" class="title required">__MSG__PERSONTITLE__:</label>
-                                        <label id="firstName_label" for="firstName" class="firstName required">__MSG__FIRSTNAME__:</label>
-                                        <label id="lastName_label" for="lastName" class="lastName required">__MSG__LASTNAME__:</label>
-                                        <label id="email_label" for="email" class="email required">__MSG__EMAIL__:</label>
-                                    </div>
-                                    <div class="signup_form_column_fields">
-                                        <div class="create_account_input_error" id="create_account_username_error" style="display:none;"><!----></div>
+                                    <div class="s3d-form-field-wrapper">
+                                        <label id="username_label" class="username required s3d-input-label" for="username">__MSG__USERNAME__:</label>
                                         <input type="text" maxlength="255" id="username" name="username" class="username_unavailable_icon create_account_input required" placeholder="Hiroyuki"/>
-                                        <div class="create_account_input_error" style="display:none;"><!----></div>
+                                        <label id="password_label" for="password" class="password required s3d-input-label">__MSG__PASSWORD__:</label>
                                         <input type="password" maxlength="255" id="password" name="password" class="create_account_input required" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;"/>
-                                        <div class="create_account_input_error" style="display:none;"><!----></div>
+                                        <label id="password_repeat_label" for="password_repeat" class="password_repeat required s3d-input-label">__MSG__RE_TYPE_PASSWORD__:</label>
                                         <input type="password" maxlength="255" id="password_repeat" name="password_repeat" class="create_account_input required" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;"/>
-                                        <div class="create_account_input_error" style="display:none;"><!----></div>
+                                        <label id="title_label" for="title" class="title required s3d-input-label">__MSG__PERSONTITLE__:</label>
                                         <select id="title" name="title" class="create_account_input required">
                                             <option id="title-notset" value="">__MSG__PERSONTITLE_SELECT__</option>
                                             <option id="title-mr" value="Mr.">__MSG__PERSONTITLE_MR__</option>
@@ -74,26 +65,20 @@
                                             <option id="title-dr" value="Dr.">__MSG__PERSONTITLE_DR__</option>
                                             <option id="title-rev" value="Rev.">__MSG__PERSONTITLE_REV__</option>
                                         </select>
-                                        <div class="create_account_input_error" style="display:none;"><!----></div>
+                                        <label id="firstName_label" for="firstName" class="firstName required s3d-input-label">__MSG__FIRSTNAME__:</label>
                                         <input type="text" maxlength="255" id="firstName" name="firstName" class="create_account_input required" placeholder="Hiroyuki"/>
-                                        <label for="lastName" class="lastName s3d-input-label">__MSG__LASTNAME__:</label>
+                                        <label id="lastName_label" for="lastName" class="lastName required s3d-input-label">__MSG__LASTNAME__:</label>
                                         <input type="text" maxlength="255" id="lastName" name="lastName" class="create_account_input required" placeholder="Sakai"/>
-                                        <label for="email" class="email s3d-input-label">__MSG__EMAIL__:</label>
+                                        <label id="email_label" for="email" class="email required s3d-input-label">__MSG__EMAIL__:</label>
                                         <input type="text" maxlength="255" id="email" name="email" class="create_account_input required email" placeholder="hiroyuki.sakai@example.com"/>
                                     </div>
                                 </div>
                                 <div class="signup_form_column">
                                 <!-- rSmart: begin new fields to gather marketing data -->
-                                    <div class="signup_form_column_labels">
-                                        <label id="institution_label" for="institution" class="institution required">__MSG__INSTITUTION__:</label>
-                                        <label id="role_label" for="role" class="role required">__MSG__ROLE__:</label>
-                                        <label id="phone_label" for="phone" class="phone">__MSG__PHONENO__:</label>
-                                        <label id="currentLms_label" for="currentLms" class="currentLms">__MSG__LMS__:</label>
-                                    </div>
-                                    <div class="signup_form_column_fields">
-                                        <div class="create_account_input_error" id="create_account_institution_error" style="display:none;"><!----></div>
+                                    <div class="s3d-form-field-wrapper">
+                                        <label id="institution_label" for="institution" class="institution required s3d-input-label">__MSG__INSTITUTION__:</label>
                                         <input type="text" maxlength="255" id="institution" name="institution" class="create_account_input required" placeholder="My University/College"/>
-                                        <div id="create_account_role_error" class="create_account_input_error" style="display:none;"><!----></div>
+                                        <label id="role_label" for="role" class="role required s3d-input-label">__MSG__ROLE__:</label>
                                         <select id="role" name="role" class="required">
                                             <option id="role-notset" value="">__MSG__ROLE_SELECT__</option>
                                             <option id="role-student" value="Student">__MSG__ROLE_STUDENT__</option>
@@ -102,9 +87,9 @@
                                             <option id="role-staff" value="Staff">__MSG__ROLE_STAFF__</option>
                                             <option id="role-other" value="other">__MSG__ROLE_OTHER__</option>                                            
                                         </select>
-                                        <div class="create_account_phone_error" id="create_account_phone_error" style="display:none;"><!----></div>
+                                        <label id="phone_label" for="phone" class="phone s3d-input-label">__MSG__PHONENO__:</label>
                                         <input type="text" maxlength="255" id="phone" name="phone" class="create_account_input" placeholder="(201)555-1212"/>
-                                        <div id="create_account_lms_error" class="create_account_lms_error" style="display:none;"><!----></div>
+                                        <label id="currentLms_label" for="currentLms" class="currentLms s3d-input-label">__MSG__LMS__:</label>
                                         <select id="currentLms" name="currentLms" >
                                             <option id="currentLms-notset" value="">__MSG__LMS_SELECT__</option>
                                             <option id="currentLms-angel" value="Angel">__MSG__LMS_ANGEL__</option>
@@ -141,20 +126,7 @@
                             </div>
                         </form>
                     </div>
-
-                    <div id="firstName_empty" style="display:none;">__MSG__PLEASE_ENTER_YOUR_FIRST_NAME__</div>
-                    <div id="lastName_empty" style="display:none;">__MSG__PLEASE_ENTER_YOUR_LAST_NAME__</div>
-                    <div id="email_empty" style="display:none;">__MSG__PLEASE_ENTER_A_VALID_EMAIL_ADDRESS__</div>
-                    <div id="email_invalid" style="display:none;">__MSG__THIS_IS_AN_INVALID_EMAIL_ADDRESS__</div>
-                    <div id="username_empty" style="display:none;">__MSG__PLEASE_ENTER_YOUR_USERNAME__</div>
-                    <div id="username_short" style="display:none;">__MSG__THE_USERNAME_SHOULD_BE_AT_LEAST_THREE_CHARACTERS_LONG__</div>
-                    <div id="username_spaces" style="display:none;">__MSG__THE_USERNAME_SHOULDNT_CONTAIN_SPACES__</div>
-                    <div id="password_empty" style="display:none;">__MSG__PLEASE_ENTER_YOUR_PASSWORD__</div>
-                    <div id="password_short" style="display:none;">__MSG__YOUR_PASSWORD_SHOULD_BE_FOUR_CHARACTERS_LONG__</div>
-                    <div id="password_repeat_empty" style="display:none;">__MSG__PLEASE_REPEART_YOUR_PASSWORD__</div>
-                    <div id="password_repeat_nomatch" style="display:none;">__MSG__THIS_PASSWORD_DOES_NOT_MATCH_THE_FIRST_ONE__</div>
-
-                    <h2>A selection of institutions that use the Sakai platform:</h2>
+                    <h2 id="signup_institution_header">A selection of institutions that use the Sakai platform:</h2>
                     <ul id="signup_institution_logos">
                         <li><img src="/dev/images/logo_inst_nyu.png" alt="__MSG__SIGN_UP_RECOMMEND_INSTITUTION_NYU__"></li>
                         <li><img src="/dev/images/logo_inst_stanford.png" alt="__MSG__SIGN_UP_RECOMMEND_INSTITUTION_STANFORD__"></li>
@@ -170,6 +142,18 @@
 
         <!-- FOOTER WIDGET -->
         <div id="widget_footer" class="widget_inline footercontainer"></div>
+
+        <div id="firstName_empty" style="display:none;">__MSG__PLEASE_ENTER_YOUR_FIRST_NAME__</div>
+        <div id="lastName_empty" style="display:none;">__MSG__PLEASE_ENTER_YOUR_LAST_NAME__</div>
+        <div id="email_empty" style="display:none;">__MSG__PLEASE_ENTER_A_VALID_EMAIL_ADDRESS__</div>
+        <div id="email_invalid" style="display:none;">__MSG__THIS_IS_AN_INVALID_EMAIL_ADDRESS__</div>
+        <div id="username_empty" style="display:none;">__MSG__PLEASE_ENTER_YOUR_USERNAME__</div>
+        <div id="username_short" style="display:none;">__MSG__THE_USERNAME_SHOULD_BE_AT_LEAST_THREE_CHARACTERS_LONG__</div>
+        <div id="username_spaces" style="display:none;">__MSG__THE_USERNAME_SHOULDNT_CONTAIN_SPACES__</div>
+        <div id="password_empty" style="display:none;">__MSG__PLEASE_ENTER_YOUR_PASSWORD__</div>
+        <div id="password_short" style="display:none;">__MSG__YOUR_PASSWORD_SHOULD_BE_FOUR_CHARACTERS_LONG__</div>
+        <div id="password_repeat_empty" style="display:none;">__MSG__PLEASE_REPEART_YOUR_PASSWORD__</div>
+        <div id="password_repeat_nomatch" style="display:none;">__MSG__THIS_PASSWORD_DOES_NOT_MATCH_THE_FIRST_ONE__</div>
 
         <!-- Dependency JS -->
         <script data-main="/dev/lib/sakai/sakai.dependencies.js" src="/dev/lib/jquery/require.js"></script>

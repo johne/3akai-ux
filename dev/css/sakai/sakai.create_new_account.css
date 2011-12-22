@@ -27,8 +27,6 @@ h2 {color:#666;font-size:15px;}
 #signup_descriptionbox_middle {margin-left:336px;margin-top:344px;text-align:center;width:230px;}
 
 #signup_form_container .signup_form_column {width:370px;float:left;margin-top:12px;}
-.signup_form_column input, .signup_form_column select {clear:both;display:block;float:left;margin-bottom:15px;}
-#signup_form_container .signup_form_column label {float:right;margin:6px 8px 16px 0;color:#666;clear:both;text-align:right;}
 label.required
 {
 background-image:url("/dev/images/required.png");
@@ -36,8 +34,6 @@ background-position:top left;
 background-repeat:no-repeat;
 padding-left:15px;
 }
-#signup_form_container .signup_form_column input {border:1px solid #e0e1e2;height:21px;width:200px;padding:0 5px;color:#333;}
-#signup_form_container .signup_form_column input.username_unavailable_icon {width:185px;padding:0 20px 0 5px;}
 #signup_form_container .signup_form_column select {border:1px solid #e0e1e2;height:23px;width:216px;color:#333;}
 #signup_form_container #signup_form_shadow {background:url("/dev/images/signup_form_bgshadow.png") no-repeat scroll left top transparent;height:15px;margin-left:95px;margin-top:-14px;position:absolute;width:700px;}
 #signup_form_container #checkUserName{float:right;margin-top:10px;}
@@ -64,6 +60,7 @@ label.signup_form_error_label{margin:28px 8px 9px 0px !important;}
 .signup_comment_icon_cohere {background:url("/dev/images/cohere_icon_50x110.png") no-repeat top left transparent;height:110px;}
 .signup_comment_icon_editable {background:url("/dev/images/editable_icon_50x50.png") no-repeat top left transparent;height:50px;}
 
+#signup_institution_header{float:left;width:100%;margin-top:25px;}
 #signup_institution_logos {height:40px;width:925px;margin:25px 0 0 0;padding:0}
 #signup_institution_logos li{list-style:none;float:left;padding:0;margin:0}
 /* Override CSS */
