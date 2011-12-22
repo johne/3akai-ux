@@ -2,13 +2,15 @@
     "sakaidocs":true,
     "ca":true,
     "hasSettings": false,
-    "description":"Tests and Quizzes",
     "id":"sakai2samigo",
     "i18n": {
-        "default": "/devwidgets/sakai2samigo/bundles/default.properties"
+        "default": {
+            "bundle": "/devwidgets/sakai2samigo/bundles/default.properties",
+            "name": "Tests and Quizzes",
+            "description": "Tests and Quizzes"
+        }
     },
     "img":"/devwidgets/sakai2samigo/images/sakai2samigo.png",
-    "name":"Tests and Quizzes",
     "type":"sakai",
     "enabled":true,
     "url":"/devwidgets/sakai2samigo/sakai2samigo.html",

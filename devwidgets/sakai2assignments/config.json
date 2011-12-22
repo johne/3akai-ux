@@ -2,13 +2,15 @@
     "sakaidocs":true,
     "ca":true,
     "hasSettings": false,
-    "description":"Assignments",
     "id":"sakai2assignments",
     "i18n": {
-        "default": "/devwidgets/sakai2assignments/bundles/default.properties"
+        "default": {
+            "bundle": "/devwidgets/sakai2assignments/bundles/default.properties",
+            "name": "Assignments",
+            "description": "Assignments"
+        }
     },
     "img":"/devwidgets/sakai2assignments/images/sakai2assignments.png",
-    "name":"Assignments",
     "type":"sakai",
     "enabled":true,
     "url":"/devwidgets/sakai2assignments/sakai2assignments.html",
