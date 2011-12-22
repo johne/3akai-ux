@@ -321,26 +321,6 @@ define(function(){
                             }
                         }
                     },
-                    "locations": {
-                        "label": "__MSG__PROFILE_LOCATIONS_LABEL__",
-                        "required": false,
-                        "display": true,
-                        "access": "everybody",
-                        "modifyacl": true,
-                        "permission": "anonymous",
-                        "multiple": true,
-                        "directory": true,
-                        "multipleLabel": "__MSG__PROFILE_LOCATION_LABEL__",
-                        "order": 1,
-                        "elements": {
-                            "locationtitle": {
-                                "label": "__MSG__PROFILE_LOCATION_LABEL__",
-                                "required": true,
-                                "display": true,
-                                "type": "location"
-                            }
-                        }
-                    },
                     "aboutme": {
                         "label": "__MSG__PROFILE_ABOUTME_LABEL__",
                         "required": true,
@@ -404,7 +384,7 @@ define(function(){
                         "access": "everybody",
                         "modifyacl": true,
                         "permission": "anonymous",
-                        "multiple": true,
+                        "multiple": false,
                         "order": 4,
                         "elements": {
                             "college": {
@@ -1049,19 +1029,11 @@ define(function(){
 
         Footer: {
             leftLinks: [{
-                "title": "__MSG__COPYRIGHT__",
-                "href": "http://sakaiproject.org/foundation-licenses",
-                "newWindow": true
-            }, {
-                "title": "__MSG__HELP__",
-                "href": "http://sakaiproject.org/node/2307",
-                "newWindow": true
-            }, {
                 "title": "__MSG__ACKNOWLEDGEMENTS__",
                 "href": "/acknowledgements"
             }, {
-                "title": "__MSG__SUGGEST_AN_IMPROVEMENT__",
-                "href": "http://sakaioae.idea.informer.com/",
+                "title": "__MSG__USER_AGREEMENT__",
+                "href": "http://www.rsmart.com/agreement",
                 "newWindow": true
             }],
             rightLinks: [{
