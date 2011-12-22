@@ -199,6 +199,34 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai) {
                         });
                     }
                 }
+                var dataFn = function(query, add) {
+                    var q = sakai.api.Server.createSearchString(query);
+                    var searchoptions = {"page": 0, "items": 15};
+                    /* Should investigate filtering this search to SEARCH_USERS_GROUPS_KNOWN */
+                    var searchUrl = sakai.config.URL.SEARCH_USERS_GROUPS_KNOWN;
+                    if (q === '*' || q === '**') {
+                        searchUrl = sakai.config.URL.SEARCH_USERS_GROUPS_ALL;
+                    } else {
+                        searchoptions['q'] = q;
+                    }
+                    sakai.api.Server.loadJSON(searchUrl.replace(".json", ""), function(success, data){
+                        if (success) {
+                            var suggestions = [];
+                            $.each(data.results, function(i) {
+                                if (data.results[i]["rep:userId"] && data.results[i]["rep:userId"] !== sakai.api.User.data.me.user.userid) {
+//                                        if(!options.filterUsersGroups || $.inArray(data.results[i]["rep:userId"],options.filterUsersGroups)===-1){
+                                    	suggestions.push({"value": data.results[i]["rep:userId"], "name": sakai.api.User.getDisplayName(data.results[i]), "type": "user"});
+//                                    	}
+                                } else if (data.results[i]["sakai:group-id"]) {
+//                                        if(!options.filterUsersGroups || $.inArray(data.results[i]["sakai:group-id"],options.filterUsersGroups)===-1){
+                                    	suggestions.push({"value": data.results[i]["sakai:group-id"], "name": sakai.api.Util.Security.safeOutput(data.results[i]["sakai:group-title"]), "type": "group"});
+//                                        }
+                                }
+                            });
+                            add(suggestions);
+                        }
+                    }, searchoptions);
+                };
                 sakai.api.Util.AutoSuggest.setup($("#sendmessage_to_autoSuggest"), {
                     "asHtmlID": "sendmessage_to_autoSuggest",
                     startText: sakai.api.i18n.getValueForKey("ENTER_CONTACT_OR_GROUP_NAMES", "sendmessage"),
@@ -216,36 +244,8 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai) {
                             '<img class="sm_suggestion_img" src="' + imgSrc + '" />' +
                             '<span class="sm_suggestion_name">' + data.name + '</span>');
                         return line_item;
-                    },
-                    source: function(query, add) {
-                        var q = sakai.api.Server.createSearchString(query);
-                        var searchoptions = {"page": 0, "items": 15};
-                        /* Should investigate filtering this search to SEARCH_USERS_GROUPS_KNOWN */
-                        var searchUrl = sakai.config.URL.SEARCH_USERS_GROUPS_KNOWN;
-                        if (q === '*' || q === '**') {
-                            searchUrl = sakai.config.URL.SEARCH_USERS_GROUPS_ALL;
-                        } else {
-                            searchoptions['q'] = q;
-                        }
-                        sakai.api.Server.loadJSON(searchUrl.replace(".json", ""), function(success, data){
-                            if (success) {
-                                var suggestions = [];
-                                $.each(data.results, function(i) {
-                                    if (data.results[i]["rep:userId"] && data.results[i]["rep:userId"] !== sakai.api.User.data.me.user.userid) {
-//                                        if(!options.filterUsersGroups || $.inArray(data.results[i]["rep:userId"],options.filterUsersGroups)===-1){
-                                        	suggestions.push({"value": data.results[i]["rep:userId"], "name": sakai.api.User.getDisplayName(data.results[i]), "type": "user"});
-//                                    	}
-                                    } else if (data.results[i]["sakai:group-id"]) {
-//                                        if(!options.filterUsersGroups || $.inArray(data.results[i]["sakai:group-id"],options.filterUsersGroups)===-1){
-                                        	suggestions.push({"value": data.results[i]["sakai:group-id"], "name": sakai.api.Util.Security.safeOutput(data.results[i]["sakai:group-title"]), "type": "group"});
-//                                        }
-                                    }
-                                });
-                                add(suggestions);
-                            }
-                        }, searchoptions);
                     }
-                });
+                }, false, dataFn);
             };
 
             ///////////////////////////
