@@ -18,6 +18,7 @@
                 <div class="s3d-container-shadow-left"><!----></div>
                 <div class="s3d-container-shadow-right"><!----></div>
                 <div class="s3d-page-header">
+                    <div id="widget_collections" class="widget_inline"></div>
                     <div id="widget_institutionalskinning" class="widget_inline"></div>
                     <div id="explore_navigation">
                         <div class="s3d-contentpage-title">__MSG__ALL_CATEGORIES__</div>
@@ -36,7 +37,7 @@
 
         <!-- Dependency JS -->
         <script data-main="/dev/lib/sakai/sakai.dependencies.js" src="/dev/lib/jquery/require.js"></script>
-        <script>require(["/dev/javascript/explore.js"]);</script>
+        <script>require(["/dev/javascript/allcategories.js"]);</script>
         <script type="text/javascript" charset="utf-8">
           var is_ssl = ("https:" == document.location.protocol);
           var asset_host = is_ssl ? "https://s3.amazonaws.com/getsatisfaction.com/" : "http://s3.amazonaws.com/getsatisfaction.com/";

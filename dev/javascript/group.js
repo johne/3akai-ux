@@ -35,12 +35,6 @@ require(["jquery","sakai/sakai.api.core"], function($, sakai) {
                     groupData.authprofile = data.properties;
                     groupData.authprofile.picture = sakai.api.Groups.getProfilePicture(groupData.authprofile);
                     sakai_global.group.groupData = groupData.authprofile;
-                    var directory = [];
-                    // When only one tag is put in this will not be an array but a string
-                    // We need an array to parse and display the results
-                    if (sakai_global.group.groupData && sakai_global.group.groupData['sakai:tags']) {
-                        sakai_global.group.groupData.saveddirectory = sakai.api.Util.getDirectoryTags(sakai_global.group.groupData["sakai:tags"].toString());
-                    }
                     sakai_global.group.groupId = groupId;
                     sakai.api.Security.showPage(function() {
                         if (groupData.authprofile["sakai:customStyle"]) {
@@ -67,7 +61,7 @@ require(["jquery","sakai/sakai.api.core"], function($, sakai) {
             var type = "group";
             if (canManage){
                 type = "group_managed";
-                $("#group_create_new_area").show();
+                $("#group_create_new_area_container").show();
             }
             $(window).trigger("sakai.entity.init", [context, type, groupData]);
         };
@@ -168,36 +162,41 @@ require(["jquery","sakai/sakai.api.core"], function($, sakai) {
             $(window).trigger("addarea.initiate.sakai");
         });
 
-        $(window).bind("sakai.addpeople.usersselected", function(e, widgetid, data){
+        $(window).bind("toadd.addpeople.sakai", function(e, widgetid, data){
             var members = [];
-            for(var user in data){
+            $.each(data, function(i, user) {
                 var member = {
-                    "user": data[user].userid,
-                    "permission": data[user].permission
+                    "user": user.userid,
+                    "permission": user.permission
                 };
                 members.push(member);
-            }
-            if(members){
+            });
+            if (members.length) {
                 sakai.api.Groups.addUsersToGroup(groupId, members, sakai.api.User.data.me, false, function(){
-                    sakai.api.Util.notification.show(sakai.api.i18n.Widgets.getValueForKey("addpeople","","MANAGE_PARTICIPANTS"), sakai.api.i18n.Widgets.getValueForKey("addpeople","","NEW_SETTINGS_HAVE_BEEN_APPLIED"));
-                    $(window).trigger("usersselected.addpeople.sakai");
+                    $(window).trigger("usersselected.addpeople.sakai", [members]);
                 });
             } else {
-                $(window).trigger("usersselected.addpeople.sakai");
+                $(window).trigger("usersselected.addpeople.sakai", []);
             }
         });
 
-        $(window).bind("sakai.addpeople.usersswitchedpermission", function(e, widgetid, data){
-            var members = [];
-            for(var user in data){
+        $(window).bind("usersswitchedpermission.addpeople.sakai", function(e, widgetid, data){
+            var rolesToDelete = [],
+                rolesToAdd = [];
+            $.each(data, function(i, user) {
                 var member = {
-                    "userid": data[user].userid,
-                    "permission": data[user].originalPermission
+                    "userid": user.userid,
+                    "permission": user.originalPermission
                 };
-                members.push(member);
-            }
-            if(members){
-                sakai.api.Groups.removeUsersFromGroup(groupId, members, sakai.api.User.data.me, false);
+                rolesToDelete.push(member);
+                var member2 = {
+                    "user": user.userid,
+                    "permission": user.permission
+                };
+                rolesToAdd.push(member2);
+            });
+            if (rolesToDelete.length) {
+                sakai.api.Groups.changeUsersPermission(groupId, rolesToAdd, rolesToDelete, sakai.api.User.data.me);
             }
         });
 

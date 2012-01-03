@@ -16,16 +16,6 @@
  * specific language governing permissions and limitations under the License.
  */
 
-/*
- * Dependencies
- *
- * /dev/lib/jquery/plugins/jqmodal.sakai-edited.js
- * /dev/lib/jquery/plugins/jquery.autoSuggest.sakai-edited.js (autoSuggest)
- */
-
-/*global $ */
-
-// Namespaces
 require(["jquery", "sakai/sakai.api.core"], function($, sakai) {
 
     /**
@@ -206,6 +196,48 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai) {
           $(window).trigger("finished.pickeruser.sakai", {"toAdd":userList});
         };
 
+        var dataFn = function( query, add ) {
+            var q = sakai.api.Server.createSearchString(query);
+            var options = {"page": 0, "items": 15};
+            var searchUrl = sakai.config.URL.SEARCH_USERS_GROUPS_KNOWN;
+            if (pickerData.type === 'content') {
+                searchUrl = sakai.config.URL.POOLED_CONTENT_MANAGER;
+                if (q === '*' || q === '**') {
+                    searchUrl = sakai.config.URL.POOLED_CONTENT_MANAGER_ALL;
+                }
+            } else if (q === '*' || q === '**') {
+                searchUrl = sakai.config.URL.SEARCH_USERS_GROUPS_ALL;
+            }
+            if (q !== '*' && q !== '**') {
+                options['q'] = q;
+            }
+            sakai.api.Server.loadJSON(searchUrl.replace(".json", ""), function(success, data){
+                if (success) {
+                    var suggestions = [];
+                    var name, value, type;
+                    $.each(data.results, function(i) {
+                        if (pickerData.type === 'content') {
+                            name = data.results[i]['sakai:pooled-content-file-name'];
+                            value = data.results[i]['_path'];
+                            type = "file";
+                        } else if (data.results[i]["rep:userId"]) {
+                            name = sakai.api.Security.saneHTML(sakai.api.User.getDisplayName(data.results[i]));
+                            value = data.results[i]["rep:userId"];
+                            type = "user";
+                        } else if (data.results[i]["sakai:group-id"]) {
+                            name = data.results[i]["sakai:group-title"];
+                            value = data.results[i]["sakai:group-id"];
+                            type = "group";
+                        }
+                        if (pickerData.excludeList.length === 0 || $.inArray(value, pickerData.excludeList) === -1) {
+                            suggestions.push({"value": sakai.api.Security.safeOutput(value), "name": sakai.api.Security.safeOutput(name), "type": sakai.api.Security.safeOutput(type)});
+                        }
+                    });
+                    add(suggestions);
+                }
+            }, options);
+        };
+
 
         sakai.api.Util.AutoSuggest.setup($pickeruser_search_query,{
             asHtmlID: tuid,
@@ -230,49 +262,8 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai) {
                     '<img class="sm_suggestion_img" src="' + imgSrc + '" />' +
                     '<span class="sm_suggestion_name">' + data.name + '</span>');
                 return line_item;
-            },
-            source: function(query, add) {
-                var q = sakai.api.Server.createSearchString(query);
-                var options = {"page": 0, "items": 15};
-                var searchUrl = sakai.config.URL.SEARCH_USERS_GROUPS_KNOWN;
-                if (pickerData.type === 'content') {
-                    searchUrl = sakai.config.URL.POOLED_CONTENT_MANAGER;
-                    if (q === '*' || q === '**') {
-                        searchUrl = sakai.config.URL.POOLED_CONTENT_MANAGER_ALL;
-                    }
-                } else if (q === '*' || q === '**') {
-                    searchUrl = sakai.config.URL.SEARCH_USERS_GROUPS_ALL;
-                }
-                if (q !== '*' && q !== '**') {
-                    options['q'] = q;
-                }
-                sakai.api.Server.loadJSON(searchUrl.replace(".json", ""), function(success, data){
-                    if (success) {
-                        var suggestions = [];
-                        var name, value, type;
-                        $.each(data.results, function(i) {
-                            if (pickerData.type === 'content') {
-                                name = data.results[i]['sakai:pooled-content-file-name'];
-                                value = data.results[i]['_path'];
-                                type = "file";
-                            } else if (data.results[i]["rep:userId"]) {
-                                name = sakai.api.Security.saneHTML(sakai.api.User.getDisplayName(data.results[i]));
-                                value = data.results[i]["rep:userId"];
-                                type = "user";
-                            } else if (data.results[i]["sakai:group-id"]) {
-                                name = data.results[i]["sakai:group-title"];
-                                value = data.results[i]["sakai:group-id"];
-                                type = "group";
-                            }
-                            if (pickerData.excludeList.length === 0 || $.inArray(value, pickerData.excludeList) === -1) {
-                                suggestions.push({"value": sakai.api.Security.safeOutput(value), "name": sakai.api.Security.safeOutput(name), "type": sakai.api.Security.safeOutput(type)});
-                            }
-                        });
-                        add(suggestions);
-                    }
-                }, options);
-            }
-        });
+           }
+        }, false, dataFn);
 
         var addChoicesFromPickeradvanced = function(data) {
           $.each(data, function(i,val) {

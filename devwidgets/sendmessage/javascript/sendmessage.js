@@ -16,15 +16,6 @@
  * specific language governing permissions and limitations under the License.
  */
 
-/*
- * Dependencies
- *
- * /dev/lib/jquery/plugins/jqmodal.sakai-edited.js
- * /dev/lib/jquery/plugins/jquery.autoSuggest.sakai-edited.js (autoSuggest)
- */
-
-/*global $, opensocial, Config */
-
 require(["jquery", "sakai/sakai.api.core"], function($, sakai) {
     if (!sakai_global.sendmessage){
 
@@ -86,7 +77,8 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai) {
                 sendmessage_subject = "#sendmessage_subject",
                 sendmessage_body = "#sendmessage_body",
                 send_message_cancel = "#send_message_cancel",
-                $sendmessage_container = $("#sendmessage_container");
+                $sendmessage_container = $("#sendmessage_container"),
+                $sendmessage_form = $("#sendmessage_form");
 
             ///////////////////////
             // UTILITY FUNCTIONS //
@@ -147,10 +139,6 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai) {
 
                 // remove autoSuggest if it exists
                 sakai.api.Util.AutoSuggest.destroy($("#sendmessage_to_autoSuggest"));
-
-                // Remove error status styling classes
-                $(messageFieldSubject).removeClass(invalidClass);
-                $(messageFieldBody).removeClass(invalidClass);
             };
 
             /**
@@ -211,9 +199,37 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai) {
                         });
                     }
                 }
+                var dataFn = function(query, add) {
+                    var q = sakai.api.Server.createSearchString(query);
+                    var searchoptions = {"page": 0, "items": 15};
+                    /* Should investigate filtering this search to SEARCH_USERS_GROUPS_KNOWN */
+                    var searchUrl = sakai.config.URL.SEARCH_USERS_GROUPS_KNOWN;
+                    if (q === '*' || q === '**') {
+                        searchUrl = sakai.config.URL.SEARCH_USERS_GROUPS_ALL;
+                    } else {
+                        searchoptions['q'] = q;
+                    }
+                    sakai.api.Server.loadJSON(searchUrl.replace(".json", ""), function(success, data){
+                        if (success) {
+                            var suggestions = [];
+                            $.each(data.results, function(i) {
+                                if (data.results[i]["rep:userId"] && data.results[i]["rep:userId"] !== sakai.api.User.data.me.user.userid) {
+//                                        if(!options.filterUsersGroups || $.inArray(data.results[i]["rep:userId"],options.filterUsersGroups)===-1){
+                                    	suggestions.push({"value": data.results[i]["rep:userId"], "name": sakai.api.User.getDisplayName(data.results[i]), "type": "user"});
+//                                    	}
+                                } else if (data.results[i]["sakai:group-id"]) {
+//                                        if(!options.filterUsersGroups || $.inArray(data.results[i]["sakai:group-id"],options.filterUsersGroups)===-1){
+                                    	suggestions.push({"value": data.results[i]["sakai:group-id"], "name": sakai.api.Util.Security.safeOutput(data.results[i]["sakai:group-title"]), "type": "group"});
+//                                        }
+                                }
+                            });
+                            add(suggestions);
+                        }
+                    }, searchoptions);
+                };
                 sakai.api.Util.AutoSuggest.setup($("#sendmessage_to_autoSuggest"), {
                     "asHtmlID": "sendmessage_to_autoSuggest",
-                    startText: "Enter contact or group names",
+                    startText: sakai.api.i18n.getValueForKey("ENTER_CONTACT_OR_GROUP_NAMES", "sendmessage"),
                     keyDelay: "200",
                     retrieveLimit: 10,
                     preFill: preFill,
@@ -228,37 +244,8 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai) {
                             '<img class="sm_suggestion_img" src="' + imgSrc + '" />' +
                             '<span class="sm_suggestion_name">' + data.name + '</span>');
                         return line_item;
-                    },
-                    source: function(query, add) {
-                        var user = require("sakai/sakai.api.user");
-                        var q = sakai.api.Server.createSearchString(query);
-                        var searchoptions = {"page": 0, "items": 15};
-                        /* Should investigate filtering this search to SEARCH_USERS_GROUPS_KNOWN */
-                        var searchUrl = sakai.config.URL.SEARCH_USERS_GROUPS_KNOWN;
-                        if (q === '*' || q === '**') {
-                            searchUrl = sakai.config.URL.SEARCH_USERS_GROUPS_ALL;
-                        } else {
-                            searchoptions['q'] = q;
-                        }
-                        sakai.api.Server.loadJSON(searchUrl.replace(".json", ""), function(success, data){
-                            if (success) {
-                                var suggestions = [];
-                                $.each(data.results, function(i) {
-                                    if (data.results[i]["rep:userId"] && data.results[i]["rep:userId"] !== user.data.me.user.userid) {
-//                                        if(!options.filterUsersGroups || $.inArray(data.results[i]["rep:userId"],options.filterUsersGroups)===-1){
-                                        	suggestions.push({"value": data.results[i]["rep:userId"], "name": user.getDisplayName(data.results[i]), "type": "user"});
-//                                    	}
-                                    } else if (data.results[i]["sakai:group-id"]) {
-//                                        if(!options.filterUsersGroups || $.inArray(data.results[i]["sakai:group-id"],options.filterUsersGroups)===-1){
-                                        	suggestions.push({"value": data.results[i]["sakai:group-id"], "name": sakai.api.Util.Security.safeOutput(data.results[i]["sakai:group-title"]), "type": "group"});
-//                                        }
-                                    }
-                                });
-                                add(suggestions);
-                            }
-                        }, searchoptions);
                     }
-                });
+                }, false, dataFn);
             };
 
             ///////////////////////////
@@ -331,10 +318,12 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai) {
                         // Altough this isnt strictly nescecary it is cleaner.
                         $rootel = $insertInId;
                         $rootel.append($(messageDialogContainer));
+                        $sendmessage_form = $("#sendmessage_form", $rootel);
                         bindEvents();
                     }
                 } else {
                     $rootel = $("#"+tuid);
+                    $sendmessage_form = $("#sendmessage_form", $rootel);
                     bindEvents();
                 }
 
@@ -353,7 +342,7 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai) {
                     });
                     $(messageDialogContainer).jqmShow();
                 }
-
+                sakai.api.Util.Forms.clearValidation($sendmessage_form);
             };
 
 
@@ -372,45 +361,37 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai) {
                 if(success) {
                     showMessageSent(success);
                 } else {
-                    sakai.api.Util.notification.show(sakai.api.i18n.General.getValueForKey("YOUR_MESSAGE_FAILED_DELIVERED"),"",sakai.api.Util.notification.type.ERROR);
+                    sakai.api.Util.notification.show(sakai.api.i18n.getValueForKey("YOUR_MESSAGE_FAILED_DELIVERED"),"",sakai.api.Util.notification.type.ERROR);
                 }
                 $(buttonSendMessage).removeAttr("disabled");
             };
 
-            var bindEvents = function() {
-
-                /**
-                 * Event handler to respond when the Send Message button is clicked.
-                 * Checks that user input is valid and initiates a 'sendMessage' AJAX
-                 * call to the server for the selected recipients.
-                 */
-                $(buttonSendMessage).die("click");
-                $(buttonSendMessage).live("click", function(ev) {
-                    // disable the button to prevent clicking button repeatedly
-                    $(buttonSendMessage).attr("disabled", "disabled");
-                    var recipients = [];
-                    // fetch list of selected recipients
-                    var recipientsString = $(autoSuggestValues).val();
-                    // autoSuggest adds unnecessary commas to the beginning and end
-                    // of the values string; remove them
-                    if(recipientsString[0] === ",") {
-                        recipientsString = recipientsString.slice(1);
-                    }
-                    if(recipientsString[recipientsString.length - 1] === ",") {
+            var sendMessage = function() {
+                var recipients = [];
+                // fetch list of selected recipients
+                var recipientsString = $(autoSuggestValues).val();
+                // autoSuggest adds unnecessary commas to the beginning and end
+                // of the values string; remove them
+                if(recipientsString[0] === ",") {
+                    recipientsString = recipientsString.slice(1);
+                }
+                if(recipientsString[recipientsString.length - 1] === ",") {
                     recipientsString = recipientsString.slice(0, -1);
-                    }
-                    recipients = recipientsString.split(",");
+                }
+                recipients = recipientsString.split(",");
+                sakai.api.Communication.sendMessage(recipients, sakai.data.me, $(messageFieldSubject).val(), $(messageFieldBody).val(), "message", replyMessageID, handleSentMessage, true, "new_message");
+            };
 
-                    // Check the fields if there are any required fields that are not filled in.
-                    if(checkFieldsForErrors(recipients)) {
-                        sakai.api.Communication.sendMessage(recipients, sakai.data.me,
-                            $(messageFieldSubject).val(), $(messageFieldBody).val(),
-                            "message", replyMessageID, handleSentMessage, true, "new_message");
-                    } else {
-                        $(buttonSendMessage).removeAttr("disabled");
-                        sakai.api.Util.notification.show("All fields are required.","All fields are required",sakai.api.Util.notification.type.ERROR);
-                    }
-                });
+            var bindEvents = function() {
+                $.validator.addMethod("requiredsuggest", function(value, element){
+                    return value.indexOf(sakai.api.i18n.getValueForKey("ENTER_CONTACT_OR_GROUP_NAMES", "sendmessage")) === -1 && $.trim($(element).next("input.as-values").val()).replace(/,/g, "") !== "";
+                }, sakai.api.i18n.getValueForKey("AUTOSUGGEST_REQUIRED_ERROR", "sendmessage"));
+
+                var validateOpts = {
+                    submitHandler: sendMessage
+                };
+                sakai.api.Util.Forms.validate($sendmessage_form, validateOpts, true);
+
                 ////////////////////////
                 // jqModal functions  //
                 ////////////////////////

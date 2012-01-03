@@ -2,13 +2,15 @@
     "sakaidocs":true,
     "ca":true,
     "hasSettings": false,
-    "description":"Gradebook",
     "id":"sakai2gradebook",
     "i18n": {
-        "default": "/devwidgets/sakai2gradebook/bundles/default.properties"
+        "default": {
+            "bundle": "/devwidgets/sakai2gradebook/bundles/default.properties",
+            "name": "Gradebook",
+            "description": "Gradebook"
+        }
     },
     "img":"/devwidgets/sakai2gradebook/images/sakai2gradebook.png",
-    "name":"Gradebook",
     "type":"sakai",
     "enabled":true,
     "url":"/devwidgets/sakai2gradebook/sakai2gradebook.html",
