@@ -1,6 +1,11 @@
 rSmart 3akai-ux Changelog
 =========================
 
+pre-1.1.0-M1-20120105
+---------------------
+* ACAD-513 Fix the 1.1 build Conflicts: 08c9e29
+* NOJIRA specify not to skip clean in pom-bundle 469d164
+
 pre-1.1.0-M1-010312
 -------------------
 * ACAD-481 corrected pom version issues created during merge of 1.1 5d0901f
