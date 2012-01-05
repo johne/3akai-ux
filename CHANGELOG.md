@@ -1,13 +1,12 @@
 rSmart 3akai-ux Changelog
 =========================
 
-pre-1.1.0-M1-20120105
----------------------
+acad-1.1.0-M1-QA1-20120105
+--------------------------
+* NOJIRA revised deployed artifact versions to match tag 43024dc
 * ACAD-513 Fix the 1.1 build Conflicts: 08c9e29
 * NOJIRA specify not to skip clean in pom-bundle 469d164
-
-pre-1.1.0-M1-010312
--------------------
+* NOJIRA creating pre-acad-1.1.0-M1-010312 tag for QA abceccb
 * ACAD-481 corrected pom version issues created during merge of 1.1 5d0901f
 * Updating widget configs to the new format 60c2440
 * TEMPORARY: Removing the acceptterms widget from the topnavigation until the nakamura-extensions bundle is updated. Revert this commit once it is fixed. 13925de
