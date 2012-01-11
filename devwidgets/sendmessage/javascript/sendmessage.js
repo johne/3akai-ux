@@ -223,7 +223,7 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai) {
 //                                        }
                                 }
                             });
-                            add(suggestions);
+                            add(suggestions, query);
                         }
                     }, searchoptions);
                 };
