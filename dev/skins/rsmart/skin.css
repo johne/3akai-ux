@@ -1,0 +1,10 @@
+/* rSmart skin for full-width pages */
+.rsmart-full-width .fixed-container.s3d-main-container{width:auto;display:table;}
+.rsmart-full-width .s3d-twocolumn{overflow:hidden;min-width:960px;display:table;margin-left:auto;margin-right:auto;}
+.rsmart-full-width .s3d-page-fullcolumn-padding{width:auto;min-width:920px;}
+.rsmart-full-width .s3d-container-shadow-right,
+.rsmart-full-width .s3d-container-shadow-left{z-index:-1;}
+.rsmart-full-width .fl-container-flex{display:table;}
+.rsmart-full-width .s3d-page-column-right{width:auto;min-width:773px;}
+
+.rsmart-full-width #group_create_new_area_container {position:relative;}
