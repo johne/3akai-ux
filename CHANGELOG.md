@@ -1,6 +1,21 @@
 rSmart 3akai-ux Changelog
 =========================
 
+acad-1.1.0-M1-20120116
+------------------------------
+* NOJIRA release/acad-1.1.0-M1-20120116 e944504
+* ACAD-596 Make the display of timezone and language independently configurable b05ef8f
+* ACAD-596 Make language and location options configurable 71c7756
+* ACAD-592 CLE widget cleanup - Got rid of settings, as they weren't being used - Streamlined the JS code a834974
+* ACAD-591 Fix BLTI widget config.json hasSettings value 491c9d9
+* ACAD-100 Don't cache the docstructure GET ajax call, as IE8's aggressive caching will prevent any new areas from being added (after the fi
+* ACAD-528 Fix missing footer debug info 50de4b2
+* ACAD-500 replaced calls to .split("_")[] with .replace(/_chk$/,"") or .replace(/_chkselected$/, "") as needed c79ac6d
+* ACAD-496 adjusted calls for autosuggest functionality to match changes in signature with 1.1 merge 27e9d90
+* ACAD-525 Let the content profiles and worlds expand to fit their content if it is wider than the container - Created an rSmart skin css fi
+* ACAD-563 rev'd references to jquery b751cc8
+* NOJIRA removed IntelliJ project file from repo 0ba2c3f
+
 acad-1.1.0-M1-QA1-20120105
 --------------------------
 * NOJIRA revised deployed artifact versions to match tag 43024dc
