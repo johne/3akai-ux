@@ -19,7 +19,8 @@ define(["config/config"], function(config) {
 
     // Custom CSS Files to load in
     config.skinCSS = ["/dev/skins/default/skin.css", "/dev/skins/rsmart/skin.css"];
-    config.displayTimezoneAndLanguage = false;
+    config.displayTimezone = true;
+    config.displayLanguage = true;
 
     /**
      * Kaltura Settings

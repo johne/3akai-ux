@@ -524,8 +524,14 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai) {
                     $(accountPasswordTab).hide();
                     $(passChangeContainer).hide();
                 }
-                if (sakai.config.displayTimezoneAndLanguage) {
+                if (sakai.config.displayTimezone || sakai.config.displayLanguage) {
                     $accountpreferences_langloc_settings.show();
+                    if (sakai.config.displayTimezone) {
+                        $("#accountpreferences_select_timezone").show();
+                    }
+                    if (sakai.config.displayLanguage) {
+                        $("#accountpreferences_select_language").show();
+                    }
                 }
             }
         };
