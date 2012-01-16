@@ -1,4 +1,3 @@
-
 /*
  * Licensed to the Sakai Foundation (SF) under one
  * or more contributor license agreements. See the NOTICE file
@@ -71,18 +70,6 @@ require(["jquery", "sakai/sakai.api.core", "sakai/sakai.api.widgets"], function(
         // see: http://www.ietf.org/rfc/rfc2396.txt Appendix B
         var urlRegExp = new RegExp("^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?");
 
-        ///////////////////////
-        // Utility functions //
-        ///////////////////////
-
-        /**
-         * Called when the data has been saved to the JCR.
-         */
-        var savedDataToJCR = function(success, data){
-            displayRemoteContent(data);
-            sakai.api.Widgets.Container.informFinish(tuid, "sakai2gradebook");
-        };
-
         //////////////////////
         // Render functions //
         //////////////////////
@@ -108,7 +95,6 @@ require(["jquery", "sakai/sakai.api.core", "sakai/sakai.api.widgets"], function(
                 $(basicltiMainContainer, rootel).show();
             }
         };
-
 
         //////////////////////
         // Global functions //
@@ -143,14 +129,14 @@ require(["jquery", "sakai/sakai.api.core", "sakai/sakai.api.widgets"], function(
          * Save the basiclti to the jcr
          */
         var saveRemoteContent = function(){
-            var  saveContentAjax = function(json_data) {
+            var saveContentAjax = function(json_data) {
                 var url = sakaiWidgetsAPI.widgetLoader.widgets[tuid].placement;
                 $.ajax({
                     type: "POST",
                     url: url,
                     data: json,
                     success: function(data) { 
-                        savedDataToJCR(true, data); 
+                        displayRemoteContent(json);
                     }
                 }); 
                 // Because we need to use a particular servlet (LiteBasicLTI), and it
@@ -160,33 +146,12 @@ require(["jquery", "sakai/sakai.api.core", "sakai/sakai.api.widgets"], function(
                 //sakai.api.Widgets.saveWidgetData(tuid, json, savedDataToJCR);                
             };
 
-
             json["lti_virtual_tool_id"] = "sakai.gradebook.gwt.rpc";
             json[":operation"] = "basiclti";
             json["sling:resourceType"] = "sakai/basiclti";
 
             saveContentAjax(json);
         };
-
-
-        //////////////
-        // Bindings //
-        //////////////
-
-        /*
-         * Add binding to all the elements
-         */
-        var addBinding = function(){
-            // When you push the save button..
-            $(basicltiSettingsInsert).click(function(){
-                saveRemoteContent();
-            });
-
-            // Cancel it
-            $(basicltiSettingsCancel).click(function(){
-                sakai.api.Widgets.Container.informCancel(tuid, "sakai2gradebook");
-            });
-        }
 
         ///////////////////////
         // Initial functions //
@@ -197,41 +162,18 @@ require(["jquery", "sakai/sakai.api.core", "sakai/sakai.api.widgets"], function(
          * @param {Object} parameters A JSON object that contains the necessary information.
          * @param {Boolean} exists Does there exist a previous basiclti
          */
-        var displaySettings = function(parameters, exists){
-            if (exists && parameters.ltiurl) {
-                json = parameters;
-            }
-            else { // use default values
-                json = {
-                    border_size: 0,
-                    border_color: "cccccc",
-                    frame_height: defaultHeight,
-                    width: defaultWidth,
-                    width_unit: defaultWidthUnit,
-                    lti_virtual_tool_id: "sakai.gradebook.gwt.rpc",
-                    isSakai2Tool: true
-                };
-            }
-            //saveRemoteContent();
-            //renderRemoteContentSettings();
-            //renderIframeSettings(true); // LDS disabled preview
-            //renderColorContainer();
-            addBinding(); // Add binding to the various elements
-            //changeAdvancedSettingsArrow();
-            //$(basicltiSettings).show(); // Show the basiclti settings
+        var saveSettings = function(parameters, exists){
+            json = {
+                border_size: 0,
+                border_color: "cccccc",
+                frame_height: defaultHeight,
+                width: defaultWidth,
+                width_unit: defaultWidthUnit,
+                lti_virtual_tool_id: "sakai.gradebook.gwt.rpc",
+                isSakai2Tool: true
+            };
+            saveRemoteContent();
         };
-
-        /*
-         * Is the widget in settings mode or not
-         */
-        if (showSettings) {
-            $(basicltiMainContainer).hide();
-            $(basicltiSettings).show();
-        }
-        else {
-            $(basicltiSettings).hide();
-            $(basicltiMainContainer).show();
-        }
 
         /**
          * Will fetch the URL and other parameters from the JCR and according to which
@@ -239,7 +181,7 @@ require(["jquery", "sakai/sakai.api.core", "sakai/sakai.api.widgets"], function(
          */
         var getRemoteContent = function() {
             // We make our own call below at the moment. Unlike most of the widgets
-            // we need to interact directly with the LiteBasicLTI servlet. It's 
+            // we need to interact directly with the LiteBasicLTI servlet. It's
             // also not a recursive servlet so we can't use the default .infinity.json
             // that is used under the covers for most of the calls.
             var url = sakaiWidgetsAPI.widgetLoader.widgets[tuid].placement + '.json';
@@ -248,15 +190,10 @@ require(["jquery", "sakai/sakai.api.core", "sakai/sakai.api.widgets"], function(
                 url: url,
                 dataType: 'json',
                 success: function(data) {
-                    if (showSettings) {
-                        displaySettings(data,true);
-                    }
-                    else {
-                        displayRemoteContent(data);
-                    } 
+                    displayRemoteContent(data);
                 },
                 error: function(xhr, status, e) {
-                    displaySettings(null, false);
+                    saveSettings(null, false);
                 }
             });
         };
