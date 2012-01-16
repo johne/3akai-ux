@@ -172,7 +172,7 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai) {
 
             }
             
-            if (!sakai.data.me.user.anon){
+            if (!sakai.data.me.user.anon && sakai.config.displayTimezoneAndLanguage){
                 $(".footer_langloc").show();
             }
 
