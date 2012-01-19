@@ -954,7 +954,7 @@ define(
                 }
             });
             return false;
-        }
+        },
 
     		/*
     		 * check the url for a 200 type return, return false if you get it
