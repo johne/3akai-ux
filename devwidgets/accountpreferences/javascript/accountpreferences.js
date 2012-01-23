@@ -56,10 +56,12 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai) {
         var accountPreferencesPreferencesTab = "#accountpreferences_preferences_tab";
         var accountPreferencesPrivacyTab = "#accountpreferences_privacy_tab";
         var accountPasswordTab = "#accountpreferences_password_tab";
+        var accountEmailTab = "#accountpreferences_email_tab";
         var accountPreferencesContainer =  "#accountpreferences_container";
         var preferContainer = accountPreferencesID + "_preferContainer";
         var privacyContainer = accountPreferencesID + "_changePrivacyContainer";
         var passChangeContainer =  accountPreferencesID + "_changePassContainer";
+        var emailChangeContainer = accountPreferencesID + "_changeEmailContainer";
 
         // Forms
         var accountPreferencesPasswordChange = accountPreferencesID + "_password_change";
@@ -255,6 +257,14 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai) {
             ev.stopPropagation();
             return false;
         });
+
+        //////////////////////////////
+        // Change Email             //
+        //////////////////////////////
+        var initEmailTemplate = function() {
+          
+        }
+
 
         //////////////////////////////
         // Change Country, Timezone //
@@ -476,6 +486,7 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai) {
             $(passChangeContainer).hide();
             $(preferContainer).hide();
             $(privacyContainer).hide();
+            $(emailChangeContainer).hide();
         }
 
         $(accountPreferencesPreferencesTab).click(function(){
@@ -497,6 +508,13 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai) {
             $(accountPasswordTab).addClass(tabSelected);
             hideAllPanes();
             $(passChangeContainer).show();
+        });
+
+        $(accountEmailTab).click(function(){
+            $(accountPreferencesTabsButtons).removeClass(tabSelected);
+            $(accountEmailTab).addClass(tabSelected);
+            hideAllPanes();
+            $(emailChangeContainer).show();
         });
 
         $(accountPreferencesCancel).die("click").live("click", function() {

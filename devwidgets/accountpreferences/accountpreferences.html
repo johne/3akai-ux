@@ -8,6 +8,7 @@
         <h1 id="accountpreferences_title" class="s3d-dialog-header">__MSG__WIDGET_TITLE__</h1>
         <ul id="accountpreferences_tabs">
             <li><button class="selected" id="accountpreferences_preferences_tab">__MSG__ACCOUNT_PREFERENCES__</button></li>
+            <li><button id="accountpreferences_email_tab">__MSG__EMAIL_SETTINGS__</button></li>
             <li><button id="accountpreferences_privacy_tab">__MSG__PRIVACY_SETTINGS__</button></li>
             <li><button id="accountpreferences_password_tab">__MSG__PASSWORD__</button></li>
         </ul>
@@ -30,6 +31,9 @@
     <div class="fl-container-flex">
         <div class="fl-fix fl-centered accountpreferences">
             <!-- CONTENT -->
+            <div class="email" id="accountpreferences_changeEmailContainer" style="display:none;">
+              <!-- will fill in from template -->
+            </div>
             <div class="password" id="accountpreferences_changePassContainer" style="display:none;">
                 <form id="accountpreferences_password_change" class="preferences-form">
                     <h2>__MSG__PASSWORD__:</h2>
@@ -197,7 +201,7 @@
                     <option value="${i.language}_${i.country}">${i.displayName}</option>
                 {/for}
             --></div>
-
+            
             <div class="fl-push"></div>
         </div>
     </div>

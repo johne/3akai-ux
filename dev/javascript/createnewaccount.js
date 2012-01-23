@@ -59,6 +59,8 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
         var lastNameEmpty = "#lastName_empty";
         var emailEmpty = "#email_empty";
         var emailInvalid = "#email_invalid";
+        var emailNotUnique = "#email_not_unique";
+        var emailsMustMatch = "#emails_must_match";
         var passwordEmpty = "#password_empty";
         var passwordShort = "#password_short";
         var passwordRepeatEmpty = "#password_repeat_empty";
@@ -81,6 +83,7 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
         ///////////////////////
 
         var usernameEntered = "";
+        var emailEntered = "";
 
         /**
          * Get all of the values out of the form fields. This will return
@@ -205,6 +208,7 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
             });
         };
 
+
         //////////////////////////////
         // Check username existence //
         //////////////////////////////
@@ -219,43 +223,18 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
          */
         var checkUserName = function(checkingOnly, callback){
             var values = getFormValues();
-            var ret = false;
-            var async = false;
-            if (callback){
-                async = true;
-            }
-            // If we reach this point, we have a username in a valid format. We then go and check
-            // on the server whether this eid is already taken or not. We expect a 200 if it already
-            // exists and a 401 if it doesn't exist yet.
             var url = sakai.config.URL.USER_EXISTENCE_SERVICE.replace(/__USERID__/g, $.trim(values.username));
-            if (errObj.length === 0) {
-                $.ajax({
-                    // Replace the preliminary parameter in the service URL by the real username entered
-                    url: url,
-                    cache: false,
-                    async: async,
-                    success: function(){
-                        if (callback){
-                            callback(false);
-                        }
-                    },
-                    error: function(xhr, textStatus, thrownError){
-                        // SAKIII-1736 - IE will interpret the 204 returned by the server as a
-                        // status code 1223, which will cause the error clause to activate
-                        if (xhr.status === 1223) {
-                            ret = false;
-                        } else {
-                            ret = true;
-                        }
-                        if (callback){
-                            callback(ret);
-                        }
-                    }
-                });
-            }
-            return ret;
+            
+			      return sakai.api.User.checkExistence(url, checkingOnly, callback, errObj);
         };
 
+		var checkEmailAddress = function(checkingOnly, callback) {
+            var values = getFormValues();
+            var url = sakai.config.URL.USER_EMAIL_EXISTENCE_SERVICE.replace(/__EMAIL__/g, $.trim(values.email));
+			
+            return sakai.api.User.checkExistence(url, checkingOnly, callback, errObj);
+		};
+		
         var initCaptcha = function(){
             sakai.api.Widgets.widgetLoader.insertWidgets("captcha_box", false);
         };
@@ -314,6 +293,15 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
             $.validator.addMethod("validusername", function(value, element){
                 return this.optional(element) || (checkUserName());
             }, "* This username is already taken.");
+            
+            $.validator.addMethod("emailmatch", function(value, element){
+                var values = getFormValues();
+                return this.optional(element) || (value === values.email);
+            }, "* The emails do not match.");
+
+            $.validator.addMethod("validemail", function(value, element){
+                return this.optional(element) || (checkEmailAddress());
+            }, "* This email is already taken.");
 
             var validateOpts = {
                 rules: {
@@ -327,6 +315,13 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
                         minlength: 3,
                         nospaces: true,
                         validusername: true
+                    },
+                    email: {
+                        email: true,
+                        validemail: true
+                    },
+                    emailConfirm: {
+                        emailmatch: true
                     },
                     role: {
                         minlength: 1,
@@ -350,7 +345,11 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai){
                     lastName: $(lastNameEmpty).text(),
                     email: {
                         required: $(emailEmpty).text(),
-                        email: $(emailInvalid).text()
+                        email: $(emailInvalid).text(),
+                        validemail: $(emailNotUnique).text()
+                    },
+                    emailConfirm: {
+                        emailmatch: $(emailsMustMatch).text()
                     },
                     username: {
                         required: $(usernameEmpty).text(),
