@@ -1,6 +1,11 @@
 rSmart 3akai-ux Changelog
 =========================
 
+1.1.0-M1-20120130
+-------------------------
+* NOJIRA release/1.1.0-M1-20120130 7599c13
+* ACAD-622 corrected string replace call that was affecting derivation of user ID from <select> element b04d7ca
+
 acad-1.1.0-M1-20120124
 ----------------------
 * NOJIRA release/acad-1.1.0-M1-20120124 cfeb5e6
