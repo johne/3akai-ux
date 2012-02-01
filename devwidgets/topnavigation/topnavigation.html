@@ -182,6 +182,7 @@
             </li>
         </ul>
         {else}
+        <div id="widget_lostpwd" class="widget_inline"></div>
         <div class="s3d-dropdown-menu" id="topnavigation_user_options_login_wrapper">
             <button id="topnavigation_user_options_login">__MSG__SIGN_IN__</button>
             <div id="topnavigation_user_options_login_fields" class="s3d-dropdown-container" style="display:none;">
@@ -204,7 +205,7 @@
 							<br/>
                         {/if}
                         <span class="topnavigation_sign_up_link">__MSG__HAVING_LOGIN_TROUBLE__</span>
-                        <a class="s3d-regular-links topnavigation_sign_up_link" href="http://getsatisfaction.com/rsmart/topics/passwords_there_isnt_a_way_to_reset_them">__MSG__RESET_PASSWORD__</a>
+                        <a class="s3d-regular-links topnavigation_sign_up_link" id="topnavigation_reset_pwd_link" href="http://getsatisfaction.com/rsmart/topics/passwords_there_isnt_a_way_to_reset_them">__MSG__RESET_PASSWORD__</a>
                         <button type="submit" class="s3d-button s3d-overlay-button no-pad" id="topnavigation_user_options_login_button_login">__MSG__SIGN_IN__</button>
                         <span id="topnavigation_user_options_login_button_signing_in" style="display:none;">__MSG__SIGNING_IN__</span>
 						</div>
@@ -233,6 +234,9 @@
 
 <!-- Accept Terms and Condition Widget Container -->
 <div id="widget_acceptterms" class="widget_inline"></div>
+
+<!--  Email Verify Widget Container -->
+<div id="widget_emailverify" class="widget_inline"></div>
 
 <!-- Upload Content Widget Container -->
 <div id="newaddcontentcontainer" style="display:none;">

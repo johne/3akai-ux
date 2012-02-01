@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations under the License.
  */
 define(function(){
+	
     var config = {
         URL: {
             // Static URLs
@@ -86,7 +87,8 @@ define(function(){
             SEARCH_USERS_GROUPS_KNOWN: "/var/search/usersgroups-known.json",
             SEARCH_USERS_GROUPS_ALL: "/var/search/usersgroups-all.json",
             USER_CHANGEPASS_SERVICE: "/system/userManager/user/__USERID__.changePassword.html",
-            USER_EXISTENCE_SERVICE: "/system/userManager/user.exists.html?userid=__USERID__"
+            USER_EXISTENCE_SERVICE: "/system/userManager/user.exists.html?userid=__USERID__",
+            USER_EMAIL_EXISTENCE_SERVICE: "/system/userManager/user.emailexists.html?email=__EMAIL__"
         },
 
         PageTitles: {
