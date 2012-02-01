@@ -1,6 +1,21 @@
 rSmart 3akai-ux Changelog
 =========================
 
+1.1.0-M1-20120130
+-------------------------
+* NOJIRA release/1.1.0-M1-20120130 7599c13
+* ACAD-622 corrected string replace call that was affecting derivation of user ID from <select> element b04d7ca
+
+acad-1.1.0-M1-20120124
+----------------------
+* NOJIRA release/acad-1.1.0-M1-20120124 cfeb5e6
+* ACAD-614 Fixing join request buttons for IE8 6061976
+* SAKIII-4703 fix IE8 bug in profile pages b561814
+* SAKIII-4305 - Fix the fact that widgets can only be dragged to top of leftmost column. cc0d4b9
+* ACAD-613 Revert "TEMPORARY: Removing the acceptterms widget from the topnavigation until the nakamura-extensions bundle is updated. Revert
+* ACAD-525 Prevent a 100% width page from floating below the lhnav - Needed to move the addarea widget around to prevent it's styling from b
+* ACAD-591 Ensure that the IE_PLACEHOLDER is in place as IE8 doesn't like a widget with no textual content - Also added </script> tags to th
+
 acad-1.1.0-M1-20120116
 ------------------------------
 * NOJIRA release/acad-1.1.0-M1-20120116 e944504
