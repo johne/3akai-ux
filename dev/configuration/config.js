@@ -313,7 +313,7 @@ define(function(){
                                 "label": "__MSG__PROFILE_BASIC_EMAIL_LABEL__",
                                 "errorMessage": "__MSG__PROFILE_BASIC_EMAIL_ERROR__",
                                 "required": true,
-                                "display": false,
+                                "display": true,
                                 "validation": "email"
                             },
                             "status": {

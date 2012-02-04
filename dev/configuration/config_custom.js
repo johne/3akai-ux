@@ -22,6 +22,9 @@ define(["config/config"], function(config) {
     config.displayTimezone = true;
     config.displayLanguage = true;
 
+    config.emailLocation = 'accountpreferences';
+    config.Profile.configuration.defaultConfig.basic.elements.email.display = false;
+
     /**
      * Kaltura Settings
      */
