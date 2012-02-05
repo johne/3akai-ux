@@ -157,6 +157,7 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai) {
             }
             var auth = {
                 "externalAuth": externalAuth,
+                "internalAndExternal": sakai.config.Authentication.internalAndExternal,
                 "Authentication": sakai.config.Authentication
             };
             $(topnavUserContainer).html(sakai.api.Util.TemplateRenderer(topnavUserTemplate, {
@@ -568,6 +569,16 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai) {
                     $subnav.css("margin-left", margin + "px");
                 }
             };
+
+
+            var toggleInternalLogin = function() {
+                $(topnavUserOptionsLoginForm).toggle();
+            };
+
+            $('#topnavigation_container').on(
+                'click',
+                '#topnavigation_toggle_internal_login',
+                toggleInternalLogin);
 
             $(hasSubnav).hover(openMenu, function(){
                 closePopover();
