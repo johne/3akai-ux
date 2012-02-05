@@ -23,6 +23,13 @@ define(["config/config"], function(config) {
     config.displayLanguage = true;
 
     /**
+     * Authentication settings
+     */
+    // config.Authentication.internal = false;
+    // config.Authentication.allowInternalAccountCreation = false;
+    // config.Authentication.internalAndExternal = true;
+
+    /**
      * Kaltura Settings
      */
     config.kaltura = {
