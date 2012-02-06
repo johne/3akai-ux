@@ -243,9 +243,9 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai) {
             var goodies = {}; goodies.items = [];
 
             // Fill in media and goodies
-            for (var i in sakai.widgets){
-                if (i) {
-                    var widget = sakai.widgets[i];
+            $.each(sakai.config.enabledWidgets, function addWidgets(i) {
+                var widget = sakai.widgets[sakai.config.enabledWidgets[i]];
+                if (widget) {
                     if (widget[pageEmbedProperty] && widget.showinmedia) {
                         media.items.push(widget);
                     }
@@ -253,7 +253,7 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai) {
                         goodies.items.push(widget);
                     }
                 }
-            }
+            });
 
             var jsonData = {
                 "sakai": sakai,
