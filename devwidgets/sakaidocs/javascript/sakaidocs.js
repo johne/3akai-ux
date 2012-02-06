@@ -466,12 +466,12 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai) {
 
                     // For a built-in list of plugins with doc: http://wiki.moxiecode.com/index.php/TinyMCE:Plugins
                     //plugins: "safari,advhr,inlinepopups,preview,noneditable,nonbreaking,xhtmlxtras,template,table,insertmore,autoresize",
-                    plugins: "safari,advhr,inlinepopups,preview,noneditable,nonbreaking,xhtmlxtras,template,table,autoresize",
+                    plugins: sakai.config.Editor.plugins,
 
                     // Context Menu
-                    theme_advanced_buttons1: "formatselect,fontselect,fontsizeselect,bold,italic,underline,|,forecolor,backcolor,|,justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist,|,outdent,indent,|,table,link",
-                    theme_advanced_buttons2: "",
-                    theme_advanced_buttons3: "",
+                    theme_advanced_buttons1: sakai.config.Editor.buttons.line_one,
+                    theme_advanced_buttons2: sakai.config.Editor.buttons.line_two,
+                    theme_advanced_buttons3: sakai.config.Editor.buttons.line_three,
                     // set this to external|top|bottom
                     theme_advanced_toolbar_location: "top",
                     theme_advanced_toolbar_align: "left",

@@ -22,6 +22,10 @@ define(["config/config"], function(config) {
     config.displayTimezone = true;
     config.displayLanguage = true;
 
+    // -- Sample config for how to extend TinyMCE --
+    // config.Editor.plugins += ',paste';
+    // config.Editor.buttons.line_two = 'code,pasteword,pastetext';
+
     /**
      * Kaltura Settings
      */

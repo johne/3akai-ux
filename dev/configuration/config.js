@@ -1684,7 +1684,13 @@ define(function(){
             tinymceLanguagePacks: ['ar','ch','en','gl','id','lb','nb','ru','sv','uk','az','cn','eo','gu','is','lt','nl',
                 'sc','ta','ur','be','cs','es','he','it','lv','nn','se','te','vi','bg','cy','et','hi','ja','mk','no','si',
                 'th','zh-cn','bn','da','eu','hr','ka','ml','pl','sk','tn','zh-tw','br','de','fa','hu','kl','mn','ps','sl',
-                'tr','zh','bs','dv','fi','hy','km','ms','pt','sq','tt','zu','ca','el','fr','ia','ko','my','ro','sr','tw']
+                'tr','zh','bs','dv','fi','hy','km','ms','pt','sq','tt','zu','ca','el','fr','ia','ko','my','ro','sr','tw'],
+            plugins: 'safari,advhr,inlinepopups,preview,noneditable,nonbreaking,xhtmlxtras,template,table,autoresize',
+            buttons: {
+                line_one: 'formatselect,fontselect,fontsizeselect,bold,italic,underline,|,forecolor,backcolor,|,justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist,|,outdent,indent,|,table,link',
+                line_two: '',
+                line_three: ''
+            }
         },
 
         defaultSakaiDocContent: "",
