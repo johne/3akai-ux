@@ -196,6 +196,21 @@ define(["config/config"], function(config) {
     // };
 
     /**
+     * Explore (landing page) widget configuration
+     *
+     * Uncomment the lines below to enable the configuration override
+     */
+    // config.explore = {
+    //     oneRow: false,
+    //     widgets: {
+    //          // oneRowWidget: "welcome",
+    //         rightcol: "recentactivity",
+    //         main: "welcome",
+    //         bottom: "featuredcontent"
+    //     }
+    // };
+
+    /**
      * Kaltura Settings
      */
     config.kaltura = {
