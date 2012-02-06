@@ -235,6 +235,8 @@ define(["config/config"], function(config) {
          "label": "HELP",
          "rightLink": true
      });
+    config.emailLocation = 'accountpreferences';
+    config.Profile.configuration.defaultConfig.basic.elements.email.display = false;
 
     /**
      * Kaltura Settings

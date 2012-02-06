@@ -250,6 +250,15 @@ define(function(){
         },
 
         allowPasswordChange: true,
+        /**
+         * Where the email field should live
+         * Default is 'profile' but it can also be 'accountpreferences'
+         *
+         * If you set this to 'accountpreferences', make sure to set the
+         * display property of the email field in the defaultConfig
+         * below to false
+        */
+        emailLocation: 'profile',
 
         Profile: {
             /*
@@ -304,7 +313,7 @@ define(function(){
                                 "label": "__MSG__PROFILE_BASIC_EMAIL_LABEL__",
                                 "errorMessage": "__MSG__PROFILE_BASIC_EMAIL_ERROR__",
                                 "required": true,
-                                "display": false,
+                                "display": true,
                                 "validation": "email"
                             },
                             "status": {
