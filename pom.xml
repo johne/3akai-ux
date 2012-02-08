@@ -15,7 +15,7 @@
   <groupId>com.rsmart.nakamura</groupId>
   <artifactId>com.rsmart.nakamura.uxloader-wrap</artifactId>
   <packaging>pom</packaging>
-  <version>1.1.0-M1-20120130</version>
+  <version>1.1.1-SNAPSHOT</version>
   <name>Sakai 3 UX Loader Wrapper</name>
   <description>Loads the Sakai 3 UI into the JCR</description>
   <url>http://github.com/sakaiproject/3akai-ux</url>
