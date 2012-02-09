@@ -387,26 +387,6 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai) {
             });
         };
 
-        var saveEmail = function() {
-            var emailVal = $.trim($('#accountpreferences_email').val());
-            var data = {'email': emailVal};
-            sakai.api.User.updateUserProfile(
-                sakai.data.me.user.userid,
-                "basic", data, false, {}, false, function(success, data) {
-                    if (success) {
-                        sakai.api.Util.notification.show(
-                            $(messageEmailChanged).html(),
-                            $(messageEmailChangedBody).html());
-                        $(accountPreferencesContainer).jqmHide();
-                    } else {
-                        sakai.api.Util.notification.show(
-                            $(messageEmailChanged).html(),
-                            $(messageEmailChangedBody).html());
-                    }
-                }
-            );
-        };
-
         /**
          * Initialise form validation
          */
@@ -446,13 +426,6 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai) {
 
             // Initialize the validate plug-in
             sakai.api.Util.Forms.validate($(accountPreferencesPreferencesForm), validatePreferencesOpts);
-
-            var validateEmailOpts = {
-                submitHandler: saveEmail
-            };
-
-            // Initialize the validate plug-in
-            sakai.api.Util.Forms.validate($(accountPreferencesEmailChange), validateEmailOpts);
         };
 
         /**
