@@ -264,6 +264,14 @@ require(["jquery", "sakai/sakai.api.core"], function($, sakai) {
         });
 
         //////////////////////////////
+        // Change Email             //
+        //////////////////////////////
+        var initEmailTemplate = function() {
+          
+        }
+
+
+        //////////////////////////////
         // Change Country, Timezone //
         //////////////////////////////
 
